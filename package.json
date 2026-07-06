@@ -1,6 +1,7 @@
 {
   "name": "aquarelada-supermanual",
   "version": "1.0.0",
+  "type": "module",
   "description": "Aquarelada Editora - Super Manual de Brincadeiras",
   "dependencies": {
     "@vercel/kv": "^1.0.0",
