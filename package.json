@@ -1,0 +1,15 @@
+{
+  "name": "aquarelada-supermanual",
+  "version": "1.0.0",
+  "description": "Aquarelada Editora - Super Manual de Brincadeiras",
+  "dependencies": {
+    "@vercel/kv": "^1.0.0",
+    "@supabase/supabase-js": "^2.39.0",
+    "@planetscale/database": "^1.16.0"
+  },
+  "scripts": {
+    "dev": "node serve-local.mjs",
+    "build": "echo 'No build step needed'",
+    "start": "node serve-local.mjs"
+  }
+}
