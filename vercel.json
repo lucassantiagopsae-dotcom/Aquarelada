@@ -1,7 +1,7 @@
 {
   "outputDirectory": "./",
-  "cleanUrls": true,
-  "trailingSlash": true,
+  "cleanUrls": false,
+  "trailingSlash": false,
   "redirects": [
     { "source": "/supermanual.html", "destination": "/supermanual/", "permanent": true },
     { "source": "/acesso.html", "destination": "/acesso/", "permanent": true },
