@@ -200,7 +200,7 @@
       } catch (error) {
         console.warn(error);
       } finally {
-        window.location.href = manualUrl("/acesso/");
+        window.location.href = "/acesso/";
       }
     });
   }
