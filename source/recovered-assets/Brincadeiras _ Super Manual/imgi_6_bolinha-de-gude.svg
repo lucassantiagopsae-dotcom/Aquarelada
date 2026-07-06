@@ -1,0 +1,21 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 380" role="img" aria-hidden="true">
+<defs>
+  <filter id="paper" x="-10%" y="-10%" width="120%" height="120%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3" seed="8" result="noise"/>
+    <feColorMatrix in="noise" type="saturate" values="0" result="grain"/>
+    <feBlend in="SourceGraphic" in2="grain" mode="multiply" opacity="0.13"/>
+  </filter>
+  <style>
+    .line{fill:none;stroke:#27364a;stroke-width:8;stroke-linecap:round;stroke-linejoin:round}.thin{fill:none;stroke:#27364a;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}.ink{fill:#27364a}.skin{fill:#f4b997}.hair{fill:#52322a}.paper{fill:#fff7e8}.shadow{fill:#27364a;opacity:.08}.smile{fill:none;stroke:#27364a;stroke-width:4;stroke-linecap:round}.blush{fill:#ef8b84;opacity:.45}
+  </style>
+</defs>
+<rect width="560" height="380" fill="#dceaf7" filter="url(#paper)"/>
+<circle cx="86" cy="74" r="44" fill="#4f9f68" opacity=".22"/>
+<circle cx="494" cy="312" r="70" fill="#ffffff" opacity=".22"/>
+<path class="thin" stroke="#ffffff" opacity=".62" d="M37 102c58-39 116-39 174 0M393 96c33-22 65-22 98 0"/>
+<ellipse class="shadow" cx="281" cy="320" rx="172" ry="22"/>
+<ellipse cx="308" cy="261" rx="132" ry="54" fill="none" stroke="#27364a" stroke-width="7" stroke-dasharray="15 15" opacity=".55"/>
+<circle cx="281" cy="253" r="22" fill="#2b8fb8" stroke="#27364a" stroke-width="5"/><circle cx="343" cy="274" r="18" fill="#f4bd45" stroke="#27364a" stroke-width="5"/><circle cx="393" cy="243" r="16" fill="#ef6b5a" stroke="#27364a" stroke-width="5"/><circle cx="246" cy="288" r="16" fill="#7b6cc7" stroke="#27364a" stroke-width="5"/>
+<g transform="translate(101 83)"><circle class="skin" cx="48" cy="32" r="30"/><path class="hair" d="M20 27c5-29 36-40 61-15 2 17-10 30-26 38-7-17-21-24-35-23z"/><path class="smile" d="M40 39q8 7 18 0"/><rect x="23" y="62" width="58" height="83" rx="24" fill="#4f9f68"/><path class="line" d="M28 88 103 163M64 144l41 50M39 144 8 190"/></g>
+<path class="thin" d="M205 213c34 11 57 23 72 40"/>
+</svg>

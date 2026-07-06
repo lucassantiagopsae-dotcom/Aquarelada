@@ -1,0 +1,22 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 380" role="img" aria-hidden="true">
+<defs>
+  <filter id="paper" x="-10%" y="-10%" width="120%" height="120%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3" seed="8" result="noise"/>
+    <feColorMatrix in="noise" type="saturate" values="0" result="grain"/>
+    <feBlend in="SourceGraphic" in2="grain" mode="multiply" opacity="0.13"/>
+  </filter>
+  <style>
+    .line{fill:none;stroke:#27364a;stroke-width:8;stroke-linecap:round;stroke-linejoin:round}.thin{fill:none;stroke:#27364a;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}.ink{fill:#27364a}.skin{fill:#f4b997}.hair{fill:#52322a}.paper{fill:#fff7e8}.shadow{fill:#27364a;opacity:.08}.smile{fill:none;stroke:#27364a;stroke-width:4;stroke-linecap:round}.blush{fill:#ef8b84;opacity:.45}
+  </style>
+</defs>
+<rect width="560" height="380" fill="#dbeedb" filter="url(#paper)"/>
+<circle cx="86" cy="74" r="44" fill="#f4bd45" opacity=".22"/>
+<circle cx="494" cy="312" r="70" fill="#ffffff" opacity=".22"/>
+<path class="thin" stroke="#ffffff" opacity=".62" d="M37 102c58-39 116-39 174 0M393 96c33-22 65-22 98 0"/>
+<ellipse class="shadow" cx="280" cy="324" rx="183" ry="24"/>
+<path class="thin" stroke="#ffffff" d="M87 292c96-54 287-54 384 0"/>
+<path fill="#8a5a32" stroke="#27364a" stroke-width="8" stroke-linecap="round" d="M356 117l31 19-158 182-31-19z"/>
+<circle cx="401" cy="241" r="19" fill="#ef6b5a" stroke="#27364a" stroke-width="6"/>
+<g transform="translate(126 104) rotate(-8)"><circle class="skin" cx="48" cy="32" r="29"/><path class="hair" d="M20 27c5-31 37-42 61-16 3 18-12 31-26 40-7-17-21-24-35-24z"/><path class="smile" d="M40 39q8 7 18 0"/><rect x="23" y="61" width="58" height="84" rx="24" fill="#2b8fb8"/><path class="line" d="M26 89 95 116M80 84l77-15M44 145 15 198M70 145l48 45"/></g>
+<path class="thin" d="M443 283h42M464 263v39"/>
+</svg>

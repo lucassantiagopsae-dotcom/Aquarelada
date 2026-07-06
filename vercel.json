@@ -1,0 +1,66 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": true,
+  "redirects": [
+    { "source": "/supermanual.html", "destination": "/supermanual/", "permanent": true },
+    { "source": "/acesso.html", "destination": "/acesso/", "permanent": true },
+    { "source": "/brincadeiras.html", "destination": "/brincadeiras/", "permanent": true },
+    { "source": "/item.html", "destination": "/item/", "permanent": true },
+    { "source": "/cantigas.html", "destination": "/cantigas/", "permanent": true },
+    { "source": "/adivinhas.html", "destination": "/adivinhas/", "permanent": true },
+    { "source": "/desafios.html", "destination": "/desafios/", "permanent": true },
+    { "source": "/dobraduras.html", "destination": "/dobraduras/", "permanent": true },
+    { "source": "/e-se.html", "destination": "/e-se/", "permanent": true },
+    { "source": "/trava-linguas.html", "destination": "/trava-linguas/", "permanent": true }
+  ],
+  "rewrites": [
+    { "source": "/supermanual", "destination": "/supermanual/index.html" },
+    { "source": "/supermanual/acesso", "destination": "/acesso/index.html" },
+    { "source": "/supermanual/brincadeiras", "destination": "/brincadeiras/index.html" },
+    { "source": "/supermanual/item", "destination": "/item/index.html" },
+    { "source": "/supermanual/cantigas", "destination": "/cantigas/index.html" },
+    { "source": "/supermanual/adivinhas", "destination": "/adivinhas/index.html" },
+    { "source": "/supermanual/desafios", "destination": "/desafios/index.html" },
+    { "source": "/supermanual/dobraduras", "destination": "/dobraduras/index.html" },
+    { "source": "/supermanual/e-se", "destination": "/e-se/index.html" },
+    { "source": "/supermanual/trava-linguas", "destination": "/trava-linguas/index.html" },
+    { "source": "/supermanual/acesso.html", "destination": "/acesso/index.html" },
+    { "source": "/supermanual/brincadeiras.html", "destination": "/brincadeiras/index.html" },
+    { "source": "/supermanual/item.html", "destination": "/item/index.html" },
+    { "source": "/supermanual/cantigas.html", "destination": "/cantigas/index.html" },
+    { "source": "/supermanual/adivinhas.html", "destination": "/adivinhas/index.html" },
+    { "source": "/supermanual/desafios.html", "destination": "/desafios/index.html" },
+    { "source": "/supermanual/dobraduras.html", "destination": "/dobraduras/index.html" },
+    { "source": "/supermanual/e-se.html", "destination": "/e-se/index.html" },
+    { "source": "/supermanual/trava-linguas.html", "destination": "/trava-linguas/index.html" }
+  ],
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/manifest.webmanifest",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/sitemap.xml",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    }
+  ]
+}

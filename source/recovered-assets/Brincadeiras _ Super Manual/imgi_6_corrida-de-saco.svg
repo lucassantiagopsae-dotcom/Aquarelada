@@ -1,0 +1,20 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 380" role="img" aria-hidden="true">
+<defs>
+  <filter id="paper" x="-10%" y="-10%" width="120%" height="120%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3" seed="8" result="noise"/>
+    <feColorMatrix in="noise" type="saturate" values="0" result="grain"/>
+    <feBlend in="SourceGraphic" in2="grain" mode="multiply" opacity="0.13"/>
+  </filter>
+  <style>
+    .line{fill:none;stroke:#27364a;stroke-width:8;stroke-linecap:round;stroke-linejoin:round}.thin{fill:none;stroke:#27364a;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}.ink{fill:#27364a}.skin{fill:#f4b997}.hair{fill:#52322a}.paper{fill:#fff7e8}.shadow{fill:#27364a;opacity:.08}.smile{fill:none;stroke:#27364a;stroke-width:4;stroke-linecap:round}.blush{fill:#ef8b84;opacity:.45}
+  </style>
+</defs>
+<rect width="560" height="380" fill="#e1f0d8" filter="url(#paper)"/>
+<circle cx="86" cy="74" r="44" fill="#ef6b5a" opacity=".22"/>
+<circle cx="494" cy="312" r="70" fill="#ffffff" opacity=".22"/>
+<path class="thin" stroke="#ffffff" opacity=".62" d="M37 102c58-39 116-39 174 0M393 96c33-22 65-22 98 0"/>
+<ellipse class="shadow" cx="277" cy="331" rx="181" ry="24"/>
+<path class="thin" stroke="#ef6b5a" d="M80 286h397"/>
+<g transform="translate(118 104) rotate(-4)"><circle class="skin" cx="47" cy="31" r="29"/><path class="hair" d="M18 27c6-30 38-40 62-15 1 18-12 31-25 39-7-16-22-24-37-24z"/><path class="smile" d="M39 38q8 7 18 0"/><path fill="#b88955" stroke="#27364a" stroke-width="7" stroke-linejoin="round" d="M16 70h65c12 53 23 113 4 155H9C-3 183 5 124 16 70z"/><path class="thin" d="M19 91c21 12 43 12 63 0M24 123c20 12 40 12 57 0"/><path class="line" d="M16 92-9 121M78 92l30 26"/></g>
+<g transform="translate(309 83) rotate(7)"><circle class="skin" cx="47" cy="31" r="29"/><path class="hair" d="M19 27c4-31 37-41 61-16 2 17-11 30-25 39-7-17-21-24-36-23z"/><path class="smile" d="M39 38q8 7 18 0"/><path fill="#d99c61" stroke="#27364a" stroke-width="7" stroke-linejoin="round" d="M15 70h66c12 52 22 112 4 154H9C-4 181 5 123 15 70z"/><path class="thin" d="M19 91c22 12 43 12 64 0M25 125c20 12 39 12 56 0"/><path class="line" d="M18 92-10 120M78 91l31 27"/></g>
+</svg>
