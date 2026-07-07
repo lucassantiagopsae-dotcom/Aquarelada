@@ -1,7 +1,9 @@
 // API para capturar leads dos formulários
-// Esta function recebe dados dos formulários e armazena no Vercel KV
+// Esta function recebe dados dos formulários e armazena no Upstash Redis
 
 export async function POST(request) {
+  // Usar o formato correto para Vercel API routes
+  // A request é do tipo Request nativo do Web API
   try {
     const body = await request.json();
     const { form, name, email, whatsapp, message, attribution } = body;
