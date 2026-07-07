@@ -4,7 +4,7 @@
   "type": "module",
   "description": "Aquarelada Editora - Super Manual de Brincadeiras",
   "dependencies": {
-    "@vercel/kv": "^1.0.0",
+    "@upstash/redis": "^1.25.1",
     "@supabase/supabase-js": "^2.39.0",
     "@planetscale/database": "^1.16.0"
   },

@@ -28,40 +28,40 @@ export async function POST(request) {
       status: 'active'
     };
 
-    // Armazenar no Vercel KV (se configurado)
+    // Armazenar no Upstash Redis (se configurado)
     // Caso contrário, apenas loga o lead
     if (process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN) {
       try {
-        const { Storage } = await import('@vercel/kv');
-        const kv = new Storage({
-          restApiUrl: process.env.KV_REST_API_URL,
-          restApiToken: process.env.KV_REST_API_TOKEN,
+        const { Redis } = await import('@upstash/redis');
+        const redis = new Redis({
+          url: process.env.KV_REST_API_URL,
+          token: process.env.KV_REST_API_TOKEN,
         });
 
         // Armazenar lead individual
-        await kv.put(`lead:${lead.id}`, JSON.stringify(lead));
+        await redis.set(`lead:${lead.id}`, JSON.stringify(lead));
 
         // Adicionar à lista de leads por formulário
         const formLeadsKey = `leads:${form}`;
-        const existingLeads = await kv.get(formLeadsKey);
+        const existingLeads = await redis.get(formLeadsKey);
         const leadsList = existingLeads ? JSON.parse(existingLeads) : [];
         leadsList.push(lead.id);
-        await kv.put(formLeadsKey, JSON.stringify(leadsList));
+        await redis.set(formLeadsKey, JSON.stringify(leadsList));
 
         // Adicionar à lista global de leads
         const allLeadsKey = 'leads:all';
-        const allLeads = await kv.get(allLeadsKey);
+        const allLeads = await redis.get(allLeadsKey);
         const allLeadsList = allLeads ? JSON.parse(allLeads) : [];
         allLeadsList.push(lead.id);
-        await kv.put(allLeadsKey, JSON.stringify(allLeadsList));
+        await redis.set(allLeadsKey, JSON.stringify(allLeadsList));
 
-        console.log('Lead armazenado no Vercel KV:', lead.id);
-      } catch (kvError) {
-        console.error('Erro ao armazenar no KV:', kvError);
-        // Continuar mesmo se KV falhar
+        console.log('Lead armazenado no Upstash Redis:', lead.id);
+      } catch (redisError) {
+        console.error('Erro ao armazenar no Redis:', redisError);
+        // Continuar mesmo se Redis falhar
       }
     } else {
-      console.log('Vercel KV não configurado. Lead recebido (não armazenado):', lead);
+      console.log('Upstash Redis não configurado. Lead recebido (não armazenado):', lead);
     }
 
     // Log para debug
@@ -100,27 +100,27 @@ export async function GET(request) {
     if (!process.env.KV_REST_API_URL || !process.env.KV_REST_API_TOKEN) {
       return new Response(
         JSON.stringify({
-          error: 'Vercel KV não configurado',
+          error: 'Upstash Redis não configurado',
           leads: []
         }),
         { status: 200, headers: { 'Content-Type': 'application/json' } }
       );
     }
 
-    const { Storage } = await import('@vercel/kv');
-    const kv = new Storage({
-      restApiUrl: process.env.KV_REST_API_URL,
-      restApiToken: process.env.KV_REST_API_TOKEN,
+    const { Redis } = await import('@upstash/redis');
+    const redis = new Redis({
+      url: process.env.KV_REST_API_URL,
+      token: process.env.KV_REST_API_TOKEN,
     });
 
     const leadsKey = form ? `leads:${form}` : 'leads:all';
-    const leadsIds = await kv.get(leadsKey);
+    const leadsIds = await redis.get(leadsKey);
     const leadsList = leadsIds ? JSON.parse(leadsIds) : [];
 
     // Buscar detalhes de cada lead
     const leads = await Promise.all(
       leadsList.map(async (id) => {
-        const leadData = await kv.get(`lead:${id}`);
+        const leadData = await redis.get(`lead:${id}`);
         return leadData ? JSON.parse(leadData) : null;
       })
     );
