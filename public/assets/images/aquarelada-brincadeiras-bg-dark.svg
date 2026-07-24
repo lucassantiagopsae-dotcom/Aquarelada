@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 760" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Brincadeiras infantis em fundo azul escuro">
+  <defs>
+    <filter id="paper" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="4" seed="42"/>
+      <feColorMatrix type="saturate" values=".35"/>
+      <feBlend in="SourceGraphic" mode="soft-light"/>
+    </filter>
+    <radialGradient id="wash" cx="76%" cy="45%" r="68%">
+      <stop offset="0" stop-color="#2b8fb8" stop-opacity=".38"/>
+      <stop offset=".5" stop-color="#1b4865" stop-opacity=".22"/>
+      <stop offset="1" stop-color="#102236" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1400" height="760" fill="#0f2032"/>
+  <rect width="1400" height="760" fill="url(#wash)"/>
+  <g filter="url(#paper)" opacity=".95">
+    <circle cx="230" cy="130" r="170" fill="#7b6cc7" opacity=".12"/>
+    <circle cx="1110" cy="178" r="210" fill="#ef6b5a" opacity=".13"/>
+    <circle cx="1010" cy="610" r="220" fill="#4f9f68" opacity=".1"/>
+    <path d="M0 610c200-70 320 8 492-18 208-32 334-126 548-65 118 34 226 22 360-28v261H0z" fill="#17314b" opacity=".8"/>
+  </g>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".28">
+    <path d="M772 280c72-70 156-78 260-12" stroke="#fffaf0" stroke-width="7"/>
+    <path d="M832 382l230-34M872 310l126 116M1030 308L890 428" stroke="#fffaf0" stroke-width="5"/>
+    <path d="M110 430c74-40 138-40 198 0" stroke="#f4bd45" stroke-width="6"/>
+    <path d="M1158 442c64-74 110-96 170-68" stroke="#2b8fb8" stroke-width="7"/>
+  </g>
+  <g opacity=".22">
+    <circle cx="232" cy="506" r="18" fill="#f4bd45"/>
+    <circle cx="278" cy="532" r="13" fill="#ef6b5a"/>
+    <circle cx="330" cy="502" r="16" fill="#2b8fb8"/>
+    <circle cx="374" cy="538" r="11" fill="#4f9f68"/>
+    <path d="M1120 132l86 138 148-52-94 128 92 130-146-48-88 138-2-164-158-44 148-54z" fill="#fffaf0"/>
+  </g>
+</svg>

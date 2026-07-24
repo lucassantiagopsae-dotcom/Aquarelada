@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Um Dia Diferente, Como Era Antigamente! — livro infantil da Aquarelada</title>
+<meta name="description" content="Enzo e Valentina deixam as telas descansarem por um dia e descobrem um mundo de brincadeiras. Uma história para ler junto, fechar o livro e começar a brincar. Com o Super Manual de Brincadeiras como bônus.">
+
+<link rel="icon" href="/assets/icons/app-icon-192.png">
+<link rel="canonical" href="https://aquarelada-site.vercel.app/livro/">
+
+<meta property="og:type" content="book">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Aquarelada Editora">
+<meta property="og:title" content="Um Dia Diferente, Como Era Antigamente!">
+<meta property="og:description" content="Um livro para lembrar que o melhor da infância não precisa de botão. Para ler junto, fechar o livro e começar a brincar.">
+<meta property="og:image" content="https://aquarelada-site.vercel.app/assets/images/hero-brinquedos.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/livro.css">
+
+<!-- Sinaliza que há JS vivo. Só então o CSS esconde o que será revelado por
+     scroll — se este script ou o livro.js falharem, a página continua legível. -->
+<script>document.documentElement.classList.add("js");</script>
+</head>
+<body>
+
+<!-- ==========================================================
+     CABEÇALHO — layout dependente de estado.
+     No topo fica transparente e sem CTA, para não cortar o hero.
+     ========================================================== -->
+<header class="cabecalho" id="cabecalho">
+  <div class="cabecalho__inner">
+    <a class="cabecalho__marca" href="/">
+      <img class="cabecalho__logo" src="/assets/images/aquarelada-logo-alfa.png" alt="Aquarelada Editora">
+      <span class="cabecalho__selo">Livro infantil</span>
+    </a>
+    <div class="cabecalho__acao">
+      <a class="btn btn--principal btn--pequeno" href="https://www.amazon.com.br/s?k=Um+Dia+Diferente+Como+Era+Antigamente" target="_blank" rel="noopener">
+        Comprar<span class="rotulo-longo">&nbsp;na Amazon</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ S1 · DOBRA 1 ============ -->
+<section class="hero"
+         data-arquetipo="hero-produto-flutuante"
+         data-tom="claro"
+         data-forma="faixa-full-bleed"
+         data-tratamento="ilustracao"
+         data-ancora="visual"
+         data-divisa="reta">
+
+  <img class="hero__deco hero__deco--esq" src="/assets/images/aquarelada-pipa.png" alt="" aria-hidden="true">
+  <img class="hero__deco hero__deco--dir" src="/assets/images/aquarelada-carrinho-rolima.png" alt="" aria-hidden="true">
+
+  <div class="contido hero__conteudo">
+    <h1 class="entra">Um livro para lembrar que o melhor da infância <em>não precisa de botão.</em></h1>
+
+    <svg class="rabisco entra" viewBox="0 0 420 18" fill="none" aria-hidden="true" preserveAspectRatio="none">
+      <path d="M4 12C58 4 112 15 166 9s108-11 132-1 62 9 118 2" stroke-width="5" stroke-linecap="round"/>
+    </svg>
+
+    <p class="hero__texto entra entra--2">
+      Enzo e Valentina deixam as telas descansarem por um dia e descobrem um mundo de
+      brincadeiras, risadas e presença. Uma história infantil para ler junto, fechar o
+      livro e começar a brincar.
+    </p>
+
+    <div class="hero__acoes entra entra--3">
+      <a class="btn btn--principal" href="https://www.amazon.com.br/s?k=Um+Dia+Diferente+Como+Era+Antigamente" target="_blank" rel="noopener">
+        Comprar na Amazon
+        <svg class="btn__seta" width="18" height="14" viewBox="0 0 18 14" fill="none" aria-hidden="true">
+          <path d="M1 7h15M11 2l5 5-5 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <p class="apoio-cta">Com acesso ao Super Manual de Brincadeiras por QR Code.</p>
+    </div>
+
+    <!-- e-book em PNG transparente, cortado pela borda inferior da seção -->
+    <div class="hero__livro">
+      <img class="ebook-png" src="/assets/images/aquarelada-ebook-infantil.png" alt="E-book Um Dia Diferente, Como Era Antigamente! com bônus do Super Manual de Brincadeiras">
+    </div>
+  </div>
+</section>
+
+<!-- ============ S2 · respiro que já antecipa a dobra 3 ============ -->
+<section class="marquee"
+         data-arquetipo="faixa-marquee"
+         data-tom="claro"
+         data-forma="faixa-full-bleed"
+         data-tratamento="texto-puro"
+         data-divisa="reta"
+         aria-label="Brincadeiras que aparecem na história">
+  <div class="marquee__trilho">
+    <div class="marquee__item">pular elástico</div>
+    <div class="marquee__item">carrinho de rolimã</div>
+    <div class="marquee__item">amarelinha</div>
+    <div class="marquee__item">pião</div>
+    <div class="marquee__item">pipa</div>
+    <div class="marquee__item">ioiô</div>
+    <div class="marquee__item">taco</div>
+    <div class="marquee__item">bolinha de gude</div>
+    <div class="marquee__item">cama de gato</div>
+    <!-- duplicata para o loop contínuo -->
+    <div class="marquee__item" aria-hidden="true">pular elástico</div>
+    <div class="marquee__item" aria-hidden="true">carrinho de rolimã</div>
+    <div class="marquee__item" aria-hidden="true">amarelinha</div>
+    <div class="marquee__item" aria-hidden="true">pião</div>
+    <div class="marquee__item" aria-hidden="true">pipa</div>
+    <div class="marquee__item" aria-hidden="true">ioiô</div>
+    <div class="marquee__item" aria-hidden="true">taco</div>
+    <div class="marquee__item" aria-hidden="true">bolinha de gude</div>
+    <div class="marquee__item" aria-hidden="true">cama de gato</div>
+  </div>
+</section>
+
+<!-- ============ S3 · DOBRA 2 — o convite, sem culpa ============ -->
+<section class="convite"
+         data-arquetipo="comparacao-lado-a-lado"
+         data-tom="claro"
+         data-forma="contido"
+         data-tratamento="texto-puro"
+         data-ancora="visual"
+         data-cabecalho="padrao"
+         data-divisa="reta">
+  <div class="contido">
+    <div class="convite__topo">
+      <div class="reveal">
+        <p class="chapeu">O convite</p>
+        <h2>Uma brincadeira já pode mudar o dia.</h2>
+        <p class="convite__texto">
+          A rotina é corrida, o cansaço existe e as telas fazem parte da vida moderna.
+          Este livro não pede uma infância perfeita. Ele oferece um convite possível:
+          alguns minutos de presença real, uma leitura compartilhada e uma brincadeira
+          simples que pode virar memória.
+        </p>
+      </div>
+
+      <figure class="convite__foto fita reveal">
+        <img src="/assets/images/aquarelada-pipa.png" alt="Criança empinando uma pipa em uma tarde ensolarada" loading="lazy">
+        <figcaption>Uma tarde inteira pode começar com uma pipa no céu.</figcaption>
+      </figure>
+    </div>
+
+    <div class="confronto">
+      <div class="confronto__lado confronto__lado--nao reveal">
+        <h3>O que este livro não é</h3>
+        <ul>
+          <li><span>Um manifesto contra a tecnologia.</span></li>
+          <li><span>Um manual de bons pais.</span></li>
+        </ul>
+      </div>
+
+      <div class="confronto__lado confronto__lado--sim reveal">
+        <h3>O que ele é</h3>
+        <ul>
+          <li>Um respiro afetivo para a família inteira.</li>
+          <li>Uma ponte entre a infância de ontem e a infância de hoje.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ S4 · respiro escuro, entra por sobreposição ============ -->
+<section class="respiro"
+         data-arquetipo="citacao-solta"
+         data-tom="escuro"
+         data-forma="bloco-contido"
+         data-tratamento="bloco-cor"
+         data-divisa="sobreposta">
+  <div class="contido">
+    <div class="respiro__bloco reveal">
+      <div class="respiro__galeria" aria-hidden="true">
+        <img class="respiro__cartao respiro__cartao--um" src="/assets/images/aquarelada-pipa.png" alt="">
+        <img class="respiro__cartao respiro__cartao--dois" src="/assets/images/aquarelada-carrinho-rolima.png" alt="">
+        <img class="respiro__cartao respiro__cartao--tres" src="/assets/images/aquarelada-elastico.png" alt="">
+      </div>
+      <blockquote>
+        Não é sobre ter <strong>mais tempo</strong>. É sobre o que cabe dentro do tempo que já existe.
+      </blockquote>
+      <footer>
+        Alguns minutos de presença real valem mais do que uma tarde inteira dividida
+        com a tela. É disso que a história trata, do começo ao fim.
+      </footer>
+    </div>
+  </div>
+</section>
+
+<!-- ============ S5 · DOBRA 3 — as brincadeiras da história ============ -->
+<section class="trilha" aria-label="As brincadeiras da história"
+         data-arquetipo="scroll-horizontal"
+         data-tom="claro"
+         data-forma="faixa-full-bleed"
+         data-tratamento="ilustracao"
+         data-ancora="visual"
+         data-divisa="reta">
+
+  <div class="trilha__intro reveal">
+    <p class="trilha__frase">
+      Na história, Enzo e Valentina atravessam <span>nove brincadeiras</span> que os pais reconhecem de cor.
+    </p>
+    <p class="trilha__dica">
+      Arraste para o lado
+      <svg width="20" height="12" viewBox="0 0 20 12" fill="none" aria-hidden="true">
+        <path d="M1 6h17M13 1l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </p>
+  </div>
+
+  <div class="trilha__rail reveal">
+    <figure class="brincadeira fita">
+      <img src="/assets/images/aquarelada-elastico.png" alt="Crianças brincando de pular elástico" loading="lazy">
+      <figcaption>Pular elástico</figcaption>
+    </figure>
+    <figure class="brincadeira fita">
+      <img src="/assets/images/aquarelada-carrinho-rolima.png" alt="Criança descendo a ladeira em um carrinho de rolimã" loading="lazy">
+      <figcaption>Carrinho de rolimã</figcaption>
+    </figure>
+    <figure class="brincadeira fita">
+      <img src="/assets/images/aquarelada-amarelinha.png" alt="Criança pulando amarelinha desenhada no chão" loading="lazy">
+      <figcaption>Amarelinha</figcaption>
+    </figure>
+    <figure class="brincadeira fita">
+      <img src="/assets/images/aquarelada-piao.png" alt="Criança lançando um pião com cordão" loading="lazy">
+      <figcaption>Pião</figcaption>
+    </figure>
+    <figure class="brincadeira fita">
+      <img src="/assets/images/aquarelada-pipa.png" alt="Criança empinando uma pipa" loading="lazy">
+      <figcaption>Pipa</figcaption>
+    </figure>
+    <figure class="brincadeira fita">
+      <img src="/assets/images/aquarelada-ioio.png" alt="Criança brincando com um ioiô" loading="lazy">
+      <figcaption>Ioiô</figcaption>
+    </figure>
+    <figure class="brincadeira fita">
+      <img src="/assets/images/aquarelada-taco.png" alt="Crianças jogando taco na rua" loading="lazy">
+      <figcaption>Taco</figcaption>
+    </figure>
+    <figure class="brincadeira fita">
+      <img src="/assets/images/aquarelada-bolinha-de-gude.png" alt="Criança jogando bolinha de gude" loading="lazy">
+      <figcaption>Bolinha de gude</figcaption>
+    </figure>
+    <figure class="brincadeira fita">
+      <img src="/assets/images/aquarelada-cama-de-gato.png" alt="Duas crianças fazendo a figura da cama de gato com barbante" loading="lazy">
+      <figcaption>Cama de gato</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ S6 · da leitura para a brincadeira ============ -->
+<section class="continua"
+         data-arquetipo="stepper-numerado"
+         data-tom="escuro"
+         data-forma="bloco-contido"
+         data-tratamento="card-escuro"
+         data-divisa="inclinada">
+  <div class="contido">
+    <div class="continua__bloco reveal">
+      <h2>Da leitura para a brincadeira: a experiência continua fora do livro.</h2>
+      <p class="continua__texto">
+        Cada cena abre espaço para conversa, imaginação e memórias entre gerações.
+        E quando o livro fecha, o Super Manual entra.
+      </p>
+
+      <ol class="passos">
+        <li class="passo">
+          <span class="passo__num" aria-hidden="true">01</span>
+          <h3>Leiam juntos</h3>
+          <p>Ritmo poético, feito para leitura em voz alta com a criança no colo.</p>
+        </li>
+        <li class="passo">
+          <span class="passo__num" aria-hidden="true">02</span>
+          <h3>Fechem o livro</h3>
+          <p>A história termina exatamente onde a brincadeira de verdade começa.</p>
+        </li>
+        <li class="passo">
+          <span class="passo__num" aria-hidden="true">03</span>
+          <h3>Leiam o QR Code</h3>
+          <p>O código dentro do livro abre o Super Manual de Brincadeiras.</p>
+        </li>
+        <li class="passo">
+          <span class="passo__num" aria-hidden="true">04</span>
+          <h3>Brinquem</h3>
+          <p>Regras, materiais e formas de brincar, prontos para usar no quintal.</p>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============ S7 · o bônus ============ -->
+<section class="bonus"
+         data-arquetipo="bento-assimetrico"
+         data-tom="claro"
+         data-forma="contido"
+         data-tratamento="card-branco"
+         data-ancora="visual"
+         data-cabecalho="padrao"
+         data-divisa="reta">
+  <div class="contido">
+    <div class="reveal">
+      <p class="chapeu">O bônus</p>
+      <h2>Quem compra o livro leva o Super Manual junto.</h2>
+      <p class="bonus__texto">
+        Um acervo digital de brincadeiras clássicas para transformar a inspiração da
+        história em tarde de quintal. O acesso vem por QR Code, dentro do próprio livro.
+      </p>
+    </div>
+
+    <div class="bento">
+      <div class="celula celula--principal reveal">
+        <span class="confete confete--bonus" aria-hidden="true"></span>
+        <img src="/assets/images/supermanual-logo.png" alt="Selo do Super Manual de Brincadeiras">
+        <h3>Super Manual de Brincadeiras</h3>
+        <p>Incluso na compra do livro, sem custo adicional.</p>
+      </div>
+
+      <div class="celula reveal">
+        <span class="celula__etiqueta">Como brincar</span>
+        <h3>Regras explicadas</h3>
+        <p>Cada brincadeira com o passo a passo que os avós sabiam de cabeça.</p>
+      </div>
+
+      <div class="celula reveal">
+        <span class="celula__etiqueta">O que usar</span>
+        <h3>Materiais simples</h3>
+        <p>Barbante, giz, tampinha. O que já está em casa costuma bastar.</p>
+      </div>
+
+      <div class="celula celula--destaque reveal">
+        <span class="celula__etiqueta">Acesso</span>
+        <h3>Um QR Code dentro do livro</h3>
+        <p>Aponte a câmera e o manual abre no celular. Sem cadastro, sem aplicativo, sem prazo para expirar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ S8 · DOBRA 4 — Inteligência Afetiva ============ -->
+<section class="afeto"
+         data-arquetipo="citacao-solta"
+         data-tom="cor"
+         data-forma="bloco-contido"
+         data-tratamento="bloco-cor"
+         data-divisa="curva">
+  <div class="contido">
+    <div class="afeto__bloco reveal">
+      <h2>Um presente que vira presença, vínculo e memória.</h2>
+      <p class="afeto__texto">
+        Em um mundo cada vez mais acelerado, a Inteligência Afetiva continua insubstituível:
+        presença, atenção, vínculo e experiências compartilhadas. <em>Um Dia Diferente, Como
+        Era Antigamente!</em> é um presente para a criança e para a família inteira, porque
+        convida todos a criarem lembranças juntos.
+      </p>
+      <p class="afeto__frase">Inteligência Afetiva é transformar presença em memória.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ S9 · fechamento ============ -->
+<section class="fechar"
+         data-arquetipo="cta-full-bleed"
+         data-tom="escuro"
+         data-forma="faixa-full-bleed"
+         data-tratamento="imagem-fundo"
+         data-ancora="visual"
+         data-divisa="reta">
+  <span class="confete confete--fechar" aria-hidden="true"></span>
+
+  <div class="contido fechar__inner">
+    <div class="fechar__livro reveal">
+      <img class="ebook-png" src="/assets/images/aquarelada-ebook-infantil.png" alt="E-book Um Dia Diferente, Como Era Antigamente! com bônus do Super Manual de Brincadeiras">
+    </div>
+
+    <div class="reveal">
+      <h2>Leve para casa uma tarde que ninguém esquece.</h2>
+      <p class="fechar__texto">
+        O livro impresso chega pela Amazon, e o Super Manual de Brincadeiras vem junto,
+        por QR Code. Para pais, avós, tios, padrinhos — e para crianças de 5 a 9 anos.
+      </p>
+      <div class="fechar__acoes">
+        <a class="btn btn--claro" href="https://www.amazon.com.br/s?k=Um+Dia+Diferente+Como+Era+Antigamente" target="_blank" rel="noopener">
+          Comprar agora na Amazon
+          <svg class="btn__seta" width="18" height="14" viewBox="0 0 18 14" fill="none" aria-hidden="true">
+            <path d="M1 7h15M11 2l5 5-5 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <p class="apoio-cta">Você sai daqui para a Amazon. A compra e a entrega acontecem por lá.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ S10 · rodapé ============ -->
+<footer class="rodape"
+        data-arquetipo="rodape-editorial"
+        data-tom="claro"
+        data-forma="faixa-full-bleed"
+        data-tratamento="texto-puro"
+        data-divisa="reta">
+  <div class="contido">
+    <div class="rodape__topo">
+      <p class="rodape__frase">Histórias, brincadeiras e memórias para colorir a infância.</p>
+      <nav class="rodape__links" aria-label="Links da Aquarelada">
+        <a href="/">Aquarelada Editora</a>
+        <a href="/supermanual/">Super Manual de Brincadeiras</a>
+        <a href="https://www.amazon.com.br/s?k=Um+Dia+Diferente+Como+Era+Antigamente" target="_blank" rel="noopener">Comprar na Amazon</a>
+      </nav>
+    </div>
+    <div class="rodape__base">
+      <img class="rodape__logo" src="/assets/images/aquarelada-logo-alfa.png" alt="Aquarelada Editora">
+      <span>© 2026 Aquarelada Editora. Todos os direitos reservados.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/js/livro.js" defer></script>
+</body>
+</html>
