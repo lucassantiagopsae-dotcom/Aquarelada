@@ -1,5 +1,5 @@
 /* Um Dia Diferente, Como Era Antigamente! — comportamento da landing page.
-   Dois trabalhos apenas: estado do cabeçalho e revelação por scroll.
+   CTA flutuante, carrossel das brincadeiras e revelação por scroll.
    O hero não depende deste arquivo para aparecer (animação é CSS pura). */
 
 (function () {
@@ -48,6 +48,107 @@
     }
 
     atualizar();
+  }
+
+  /* ---- carrossel das brincadeiras ----
+     No mobile o scroll nativo resolve. No desktop, botões e arraste com mouse
+     deixam claro que a faixa continua para os lados. */
+  var trilha = document.querySelector(".trilha");
+  var trilhaRail = document.querySelector(".trilha__rail");
+  if (trilha && trilhaRail) {
+    var btnAnterior = trilha.querySelector("[data-trilha-prev]");
+    var btnProximo = trilha.querySelector("[data-trilha-next]");
+    var inicioX = 0;
+    var scrollInicial = 0;
+    var arrastando = false;
+    var arrastou = false;
+    var frameEstado = 0;
+
+    var passoTrilha = function () {
+      var primeiroCard = trilhaRail.querySelector(".brincadeira");
+      if (!primeiroCard) return Math.round(trilhaRail.clientWidth * 0.82);
+      var estilos = window.getComputedStyle(trilhaRail);
+      var gap = parseFloat(estilos.columnGap || estilos.gap || "0") || 0;
+      return Math.round(primeiroCard.getBoundingClientRect().width + gap);
+    };
+
+    var atualizarControles = function () {
+      if (!btnAnterior || !btnProximo) return;
+      var maxScroll = trilhaRail.scrollWidth - trilhaRail.clientWidth - 2;
+      btnAnterior.disabled = trilhaRail.scrollLeft <= 2;
+      btnProximo.disabled = trilhaRail.scrollLeft >= maxScroll;
+    };
+
+    var agendarEstado = function () {
+      if (frameEstado) return;
+      frameEstado = window.requestAnimationFrame(function () {
+        frameEstado = 0;
+        atualizarControles();
+      });
+    };
+
+    var rolarTrilha = function (direcao) {
+      trilhaRail.scrollBy({
+        left: direcao * passoTrilha(),
+        behavior: "smooth"
+      });
+    };
+
+    if (btnAnterior) btnAnterior.addEventListener("click", function () { rolarTrilha(-1); });
+    if (btnProximo) btnProximo.addEventListener("click", function () { rolarTrilha(1); });
+
+    trilhaRail.addEventListener("scroll", agendarEstado, { passive: true });
+    window.addEventListener("resize", agendarEstado);
+
+    trilhaRail.addEventListener("keydown", function (evento) {
+      if (evento.key !== "ArrowLeft" && evento.key !== "ArrowRight") return;
+      evento.preventDefault();
+      rolarTrilha(evento.key === "ArrowRight" ? 1 : -1);
+    });
+
+    trilhaRail.addEventListener("dragstart", function (evento) {
+      evento.preventDefault();
+    });
+
+    trilhaRail.addEventListener("pointerdown", function (evento) {
+      if (evento.pointerType === "mouse" && evento.button !== 0) return;
+      arrastando = true;
+      arrastou = false;
+      inicioX = evento.clientX;
+      scrollInicial = trilhaRail.scrollLeft;
+      trilhaRail.classList.add("arrastando");
+      trilhaRail.setPointerCapture(evento.pointerId);
+    });
+
+    trilhaRail.addEventListener("pointermove", function (evento) {
+      if (!arrastando) return;
+      var delta = evento.clientX - inicioX;
+      if (Math.abs(delta) > 4) arrastou = true;
+      trilhaRail.scrollLeft = scrollInicial - delta;
+    });
+
+    var encerrarArraste = function (evento) {
+      if (!arrastando) return;
+      var destino = scrollInicial - (evento.clientX - inicioX);
+      arrastando = false;
+      if (arrastou) trilhaRail.scrollLeft = destino;
+      if (trilhaRail.hasPointerCapture(evento.pointerId)) {
+        trilhaRail.releasePointerCapture(evento.pointerId);
+      }
+      window.requestAnimationFrame(function () {
+        trilhaRail.classList.remove("arrastando");
+        if (arrastou) agendarEstado();
+      });
+    };
+
+    trilhaRail.addEventListener("pointerup", encerrarArraste);
+    trilhaRail.addEventListener("pointercancel", encerrarArraste);
+    trilhaRail.addEventListener("lostpointercapture", function () {
+      arrastando = false;
+      trilhaRail.classList.remove("arrastando");
+    });
+
+    atualizarControles();
   }
 
   /* ---- revelação por scroll ----

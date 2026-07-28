@@ -953,12 +953,31 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
 }
 .trilha__frase span { color: var(--coral-forte); }
 
-.trilha__dica {
-  font-size: 14px;
-  color: var(--tinta-suave);
+.trilha__controles {
   display: flex;
   align-items: center;
-  gap: var(--e1);
+  gap: var(--e2);
+}
+
+.trilha__controle {
+  width: 48px;
+  height: 48px;
+  display: inline-grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  color: var(--marfim);
+  background: var(--tinta);
+  box-shadow: 0 14px 26px -18px rgba(27, 38, 53, 0.58);
+  cursor: pointer;
+  transition: transform var(--transicao), background var(--transicao), opacity var(--transicao);
+}
+
+.trilha__controle:hover { transform: translateY(-2px); background: var(--coral-forte); }
+.trilha__controle:disabled {
+  opacity: 0.36;
+  cursor: default;
+  transform: none;
 }
 
 .trilha__rail {
@@ -976,8 +995,21 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
      overflow-x:auto faz o eixo vertical recortar junto */
   padding-block: var(--e3) var(--e4);
   scrollbar-width: none;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  overscroll-behavior-x: contain;
 }
 .trilha__rail::-webkit-scrollbar { display: none; }
+.trilha__rail.arrastando {
+  cursor: grabbing;
+  scroll-snap-type: none;
+  scroll-behavior: auto;
+}
+.trilha__rail:focus-visible {
+  outline: 3px solid rgba(184, 61, 43, 0.38);
+  outline-offset: -3px;
+}
 
 .brincadeira {
   flex: none;
@@ -1017,6 +1049,8 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
   object-fit: cover;
   border-radius: var(--r-sm) var(--r-sm) 0 0;
   background: #fffaf0;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 .brincadeira figcaption {
@@ -1579,6 +1613,7 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
 
   .cta-flutuante { padding-inline: var(--e2); }
   .cta-flutuante__btn { font-size: 14px; padding: 12px 22px; }
+  .trilha__controles { display: none; }
 
   .respiro__bloco { padding-top: var(--e7); }
   .respiro__galeria { min-height: 134px; margin-top: -86px; }

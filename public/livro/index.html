@@ -169,9 +169,21 @@
     <p class="trilha__frase">
       Na história, Enzo e Valentina atravessam <span>dez brincadeiras</span> que você também deve lembrar.
     </p>
+    <div class="trilha__controles" aria-label="Navegar pelas brincadeiras">
+      <button class="trilha__controle" type="button" data-trilha-prev aria-label="Brincadeira anterior">
+        <svg width="18" height="14" viewBox="0 0 18 14" fill="none" aria-hidden="true">
+          <path d="M17 7H2M7 2 2 7l5 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <button class="trilha__controle" type="button" data-trilha-next aria-label="Próxima brincadeira">
+        <svg width="18" height="14" viewBox="0 0 18 14" fill="none" aria-hidden="true">
+          <path d="M1 7h15M11 2l5 5-5 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
   </div>
 
-  <div class="trilha__rail reveal">
+  <div class="trilha__rail reveal" tabindex="0" aria-label="Carrossel de brincadeiras">
     <figure class="brincadeira fita">
       <img src="/assets/images/aquarelada-elastico.webp" alt="Crianças brincando de pular elástico" loading="lazy">
       <figcaption>Pular elástico</figcaption>
