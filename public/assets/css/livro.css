@@ -367,7 +367,7 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
 
 .hero {
   position: relative;
-  padding-top: 172px;
+  padding-top: 124px;
   padding-bottom: 0;
   text-align: center;
   overflow: hidden;
@@ -433,8 +433,8 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
 .hero__livro {
   position: relative;
   z-index: 2;
-  margin: var(--e5) auto 0;
-  width: min(600px, 88vw);
+  margin: var(--e3) auto 0;
+  width: min(680px, 90vw);
   /* o corte na borda é o que cria a vontade de rolar */
   margin-bottom: -112px;
   /* entra junto com o resto do hero e só então começa a flutuar */
@@ -1573,8 +1573,8 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
   body { font-size: 17px; }
   :root { --largura: calc(100% - 32px); }
 
-  .hero { padding-top: 132px; }
-  .hero__livro { margin-bottom: -62px; width: min(330px, 74vw); }
+  .hero { padding-top: 90px; }
+  .hero__livro { margin-bottom: -62px; width: min(370px, 90vw); }
   .marquee { padding-top: 100px; }
 
   .convite { padding-block: var(--e7) var(--e6); }
