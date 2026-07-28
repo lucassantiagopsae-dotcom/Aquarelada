@@ -359,9 +359,9 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
 .hero {
   position: relative;
   padding-top: 124px;
-  padding-bottom: 0;
+  padding-bottom: var(--e3);
   text-align: center;
-  overflow: hidden;
+  overflow: visible;
   background:
     radial-gradient(ellipse 70% 55% at 50% 0%, #fff6e2 0%, transparent 70%),
     var(--marfim);
@@ -419,15 +419,13 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
 /* sem o raio, as ilustrações decorativas leem como recorte colado */
 .hero__deco { border-radius: var(--r-sm); }
 
-/* --- e-book em PNG transparente, cortado pela borda inferior --- */
+/* --- e-book em PNG transparente, exibido por inteiro --- */
 
 .hero__livro {
   position: relative;
   z-index: 2;
   margin: var(--e3) auto 0;
   width: min(680px, 90vw);
-  /* o corte na borda é o que cria a vontade de rolar */
-  margin-bottom: -112px;
   /* entra junto com o resto do hero e só então começa a flutuar */
   animation: entrar 500ms ease-out 180ms both, flutuar 6s ease-in-out 700ms infinite;
 }
@@ -568,8 +566,7 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
   padding-block: var(--e5);
   background: var(--marfim);
   overflow: hidden;
-  /* dá espaço para o livro do hero invadir esta seção */
-  padding-top: 130px;
+  padding-top: var(--e3);
   /* A faixa é a mesma folha do hero, rasgada na base. Ela avança sobre a
      seção seguinte (areia) para que o rasgo revele a folha de baixo —
      sem esse transbordo o recorte apareceria contra a própria cor. */
@@ -1182,26 +1179,8 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
 .bonus {
   position: relative;
   padding-block: var(--e6) var(--e9);
-  background:
-    radial-gradient(ellipse 46% 28% at 20% 28%, rgba(43, 143, 184, 0.16), transparent 70%),
-    radial-gradient(ellipse 40% 28% at 82% 24%, rgba(244, 189, 69, 0.13), transparent 72%),
-    radial-gradient(ellipse 38% 30% at 66% 92%, rgba(239, 107, 90, 0.08), transparent 70%),
-    var(--marfim);
+  background: var(--marfim);
   overflow: hidden;
-}
-
-.bonus::before {
-  content: "";
-  position: absolute;
-  inset: 8% -8% auto;
-  height: 360px;
-  pointer-events: none;
-  opacity: 0.52;
-  background:
-    radial-gradient(ellipse at 14% 55%, rgba(43, 143, 184, 0.22), transparent 58%),
-    radial-gradient(ellipse at 54% 18%, rgba(244, 189, 69, 0.18), transparent 54%),
-    radial-gradient(ellipse at 88% 70%, rgba(123, 108, 199, 0.12), transparent 58%);
-  filter: blur(18px);
 }
 
 .bonus .contido { position: relative; z-index: 1; }
@@ -1228,10 +1207,8 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
 .celula {
   position: relative;
   overflow: hidden;
-  background:
-    radial-gradient(ellipse at 16% 0%, rgba(255, 255, 255, 0.78), transparent 46%),
-    linear-gradient(150deg, rgba(255, 255, 255, 0.82), rgba(217, 236, 247, 0.58));
-  border: 1px solid rgba(43, 143, 184, 0.18);
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(90, 107, 128, 0.16);
   border-radius: var(--r-sm);
   padding: var(--e5);
   display: flex;
@@ -1255,17 +1232,18 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
   z-index: 2;
 }
 
-.celula h3 { font-size: 1.25rem; line-height: 1.2; }
-.celula p { font-size: 15.5px; color: var(--tinta-suave); }
+.celula h3 { font-size: 1.25rem; line-height: 1.2; color: var(--tinta); }
+.celula p { font-size: 15.5px; color: rgba(27, 38, 53, 0.7); }
 
 /* célula dominante: ocupa 2 colunas e 2 linhas, e carrega o selo */
 .celula--principal {
   grid-column: span 2;
   grid-row: span 2;
   background:
-    radial-gradient(circle at 24% 20%, rgba(244, 189, 69, 0.22), transparent 32%),
-    radial-gradient(circle at 74% 76%, rgba(43, 143, 184, 0.22), transparent 34%),
-    linear-gradient(160deg, rgba(255, 250, 240, 0.9), rgba(207, 231, 244, 0.74));
+    radial-gradient(circle at 22% 20%, rgba(244, 189, 69, 0.14), transparent 34%),
+    var(--tinta);
+  color: var(--marfim);
+  border-color: transparent;
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -1276,7 +1254,8 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
   margin-bottom: var(--e2);
   filter: drop-shadow(0 18px 20px rgba(27, 38, 53, 0.18));
 }
-.celula--principal h3 { font-size: clamp(1.5rem, 2.4vw, 2rem); }
+.celula--principal h3 { font-size: clamp(1.5rem, 2.4vw, 2rem); color: var(--marfim); }
+.celula--principal p { color: rgba(255, 250, 240, 0.72); }
 
 /* célula na cor de destaque — quebra a uniformidade da grade */
 .celula--destaque {
@@ -1289,6 +1268,7 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
   border-color: transparent;
 }
 .celula--destaque p { color: rgba(255, 250, 240, 0.94); }
+.celula--destaque h3 { color: var(--marfim); }
 
 .celula__etiqueta {
   font-size: 11px;
@@ -1447,30 +1427,37 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
 /* dentro da célula do bônus fica bem mais discreto, só para o selo
    não pousar sobre um retângulo liso */
 .celula--principal { position: relative; overflow: hidden; }
-.confete--bonus { opacity: 0.28; background-size: 400px 400px; }
+.confete--bonus {
+  opacity: 0.36;
+  background-size: 360px 360px;
+  animation: confeteCair 16s linear infinite;
+}
 .celula--principal > :not(.confete) { position: relative; z-index: 2; }
 
 .fechar__inner {
   position: relative;
   z-index: 2;
-  display: grid;
-  grid-template-columns: 40fr 60fr;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: clamp(var(--e5), 7vw, var(--e8));
+  text-align: center;
+  gap: var(--e5);
 }
 
-.fechar__livro { position: relative; width: min(360px, 74vw); }
+.fechar__livro { position: relative; width: min(500px, 82vw); }
 
 .fechar h2 {
   font-size: clamp(2rem, 4vw, 3.4rem);
   line-height: 1.04;
   max-width: 16ch;
+  margin-inline: auto;
 }
 
 .fechar__texto {
   margin-top: var(--e4);
   color: rgba(255, 250, 240, 0.7);
   max-width: 48ch;
+  margin-inline: auto;
 }
 
 .fechar__acoes { margin-top: var(--e5); }
@@ -1519,31 +1506,16 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
   font-size: 14px;
   color: rgba(255, 250, 240, 0.62);
 }
-/* Mantem a textura da marca e neutraliza a cor por mesclagem. */
 .rodape__marca {
-  position: relative;
   display: inline-flex;
-  width: fit-content;
-  isolation: isolate;
-}
-
-.rodape__marca::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: rgba(255, 250, 240, 0.84);
-  mix-blend-mode: color;
-  pointer-events: none;
 }
 
 .rodape__logo {
   display: block;
   height: 40px;
   width: auto;
-  filter: grayscale(1) brightness(1.42) contrast(0.94);
-  mix-blend-mode: screen;
-  opacity: 0.9;
+  filter: grayscale(1) brightness(0) invert(1);
+  opacity: 0.86;
 }
 
 /* =========================================================
@@ -1551,17 +1523,16 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
    ========================================================= */
 
 @media (max-width: 960px) {
-  :root { --largura: calc(100% - 40px); }
+  :root { --largura: calc(100% - 48px); }
 
   .confronto { grid-template-columns: 1fr; gap: var(--e6); }
   .convite__topo { grid-template-columns: 1fr; gap: var(--e6); }
-  .convite__foto { justify-self: start; max-width: 340px; }
+  .convite__foto { justify-self: center; width: min(100%, 380px); }
   .passos { grid-template-columns: repeat(2, 1fr); gap: var(--e5) var(--e4); }
   .passos::before { display: none; }
   .bento { grid-template-columns: repeat(2, 1fr); }
   .celula--principal { grid-column: span 2; grid-row: auto; }
   .celula--destaque { grid-column: span 2; }
-  .fechar__inner { grid-template-columns: 1fr; }
   .fechar__livro { margin-inline: auto; }
   .rodape__topo { flex-direction: column; align-items: flex-start; gap: var(--e5); }
   .hero__deco { display: none; }
@@ -1596,18 +1567,26 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
 
 @media (max-width: 640px) {
   body { font-size: 17px; }
-  :root { --largura: calc(100% - 32px); }
+  :root { --largura: calc(100% - 48px); }
 
   .hero { padding-top: 90px; }
-  .hero__livro { margin-bottom: -62px; width: min(370px, 90vw); }
-  .marquee { padding-top: 100px; }
+  .hero__livro { width: min(370px, 90vw); }
+  .marquee { padding-top: var(--e3); }
 
   .convite { padding-block: var(--e7) var(--e6); }
   .respiro, .continua, .afeto { padding-bottom: var(--e6); }
   .trilha, .bonus { padding-block: var(--e6); }
   .fechar { padding-block: var(--e7); }
 
-  .passos { grid-template-columns: 1fr; gap: var(--e4); }
+  .passos { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--e4) var(--e3); }
+  .passo__num {
+    width: 46px;
+    height: 46px;
+    font-size: 1.15rem;
+    box-shadow: 0 0 0 6px var(--tinta);
+  }
+  .passo h3 { margin-top: var(--e3); font-size: 1.08rem; }
+  .passo p { font-size: 14px; line-height: 1.45; }
   .bento { grid-template-columns: 1fr; }
   .celula--principal, .celula--destaque { grid-column: span 1; }
 
