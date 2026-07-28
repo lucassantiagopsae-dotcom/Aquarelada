@@ -274,6 +274,30 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
 .cta-flutuante__btn {
   min-width: min(310px, calc(100vw - 48px));
   justify-content: center;
+  position: relative;
+  background: linear-gradient(168deg, #d95743 0%, var(--coral-forte) 66%);
+  box-shadow:
+    0 20px 42px -14px rgba(184, 61, 43, 0.58),
+    inset 0 1px 0 rgba(255, 250, 240, 0.28);
+  animation: respirarCtaFixo 3.4s ease-in-out 900ms infinite;
+}
+
+.cta-flutuante__btn::after {
+  opacity: 0.45;
+}
+
+@keyframes respirarCtaFixo {
+  0%, 100% {
+    box-shadow:
+      0 20px 42px -14px rgba(184, 61, 43, 0.54),
+      inset 0 1px 0 rgba(255, 250, 240, 0.28);
+  }
+  50% {
+    box-shadow:
+      0 24px 58px -12px rgba(184, 61, 43, 0.72),
+      0 0 0 7px rgba(239, 107, 90, 0.1),
+      inset 0 1px 0 rgba(255, 250, 240, 0.34);
+  }
 }
 
 @media (min-width: 720px) {
@@ -336,6 +360,7 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   .hero__acoes .btn--principal { animation: none; }
+  .cta-flutuante__btn { animation: none; }
 }
 
 .btn--claro { background: var(--marfim); color: var(--tinta); }
