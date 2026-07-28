@@ -858,6 +858,10 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
 
 .respiro__bloco {
   position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 380px);
+  align-items: center;
+  gap: clamp(var(--e5), 6vw, var(--e8));
   background: var(--tinta);
   color: var(--marfim);
   border-radius: var(--r-lg);
@@ -868,18 +872,25 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
 }
 
 .respiro__galeria {
-  position: absolute;
-  top: 38px;
-  right: clamp(var(--e4), 7vw, 104px);
-  width: min(360px, 34%);
+  position: relative;
+  grid-column: 2;
+  grid-row: 1;
+  width: min(380px, 100%);
   min-height: 360px;
   z-index: 2;
+}
+
+.respiro__texto {
+  position: relative;
+  z-index: 3;
+  grid-column: 1;
+  grid-row: 1;
 }
 
 /* cartões soltos, empilhados como fotos flutuando no álbum */
 .respiro__cartao {
   position: absolute;
-  width: clamp(170px, 19vw, 260px);
+  width: clamp(170px, 18vw, 250px);
   aspect-ratio: 1.48 / 1;
   object-fit: cover;
   border-radius: var(--r-sm);
@@ -892,31 +903,29 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
 
 .respiro__cartao--um {
   top: 4px;
-  right: 46px;
+  right: 74px;
   transform: rotate(7deg);
 }
 
 .respiro__cartao--dois {
   top: 128px;
-  right: 6px;
+  right: 12px;
   transform: rotate(-5deg);
 }
 
 .respiro__cartao--tres {
   top: 242px;
-  right: 74px;
+  right: 82px;
   transform: rotate(4deg);
 }
 
 .respiro__bloco blockquote {
-  position: relative;
-  z-index: 3;
   margin: 0;
   font-family: "Baloo 2", "Nunito", system-ui, sans-serif;
   font-size: clamp(1.6rem, 3.6vw, 3rem);
   line-height: 1.14;
   font-weight: 400;
-  max-width: 28ch;
+  max-width: 24ch;
 }
 .respiro__bloco blockquote strong {
   font-weight: 600;
@@ -924,8 +933,6 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
 }
 
 .respiro__bloco footer {
-  position: relative;
-  z-index: 3;
   margin-top: var(--e5);
   font-size: 15px;
   color: rgba(255, 250, 240, 0.62);
@@ -1461,27 +1468,26 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
 .fechar__inner {
   position: relative;
   z-index: 2;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: minmax(320px, 42fr) minmax(0, 58fr);
   align-items: center;
-  text-align: center;
-  gap: var(--e5);
+  gap: clamp(var(--e5), 7vw, var(--e8));
 }
 
-.fechar__livro { position: relative; width: min(500px, 82vw); }
+.fechar__livro { position: relative; width: min(520px, 100%); }
+
+.fechar__conteudo { text-align: left; }
 
 .fechar h2 {
   font-size: clamp(2rem, 4vw, 3.4rem);
   line-height: 1.04;
   max-width: 24ch;
-  margin-inline: auto;
 }
 
 .fechar__texto {
   margin-top: var(--e4);
   color: rgba(255, 250, 240, 0.7);
   max-width: 48ch;
-  margin-inline: auto;
 }
 
 .fechar__acoes { margin-top: var(--e5); }
@@ -1557,11 +1563,21 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
   .bento { grid-template-columns: repeat(2, 1fr); }
   .celula--principal { grid-column: span 2; grid-row: auto; }
   .celula--destaque { grid-column: span 2; }
+  .fechar__inner {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: var(--e5);
+  }
+  .fechar__conteudo { text-align: center; }
+  .fechar h2,
+  .fechar__texto { margin-inline: auto; }
   .fechar__livro { margin-inline: auto; }
   .rodape__topo { flex-direction: column; align-items: flex-start; gap: var(--e5); }
   .hero__deco { display: none; }
 
   .respiro__bloco {
+    display: block;
     padding-top: clamp(var(--e7), 14vw, 132px);
     min-height: 0;
   }
