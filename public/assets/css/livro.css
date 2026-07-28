@@ -64,10 +64,16 @@
 
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
+}
 
 body {
   margin: 0;
+  width: 100%;
+  max-width: 100%;
   background: var(--marfim);
   color: var(--tinta);
   font-family: "Nunito", "Segoe UI", system-ui, sans-serif;
@@ -81,6 +87,20 @@ body {
     radial-gradient(ellipse 50% 32% at 12% 54%, rgba(79, 159, 104, 0.09), transparent 72%),
     radial-gradient(ellipse 46% 34% at 86% 72%, rgba(239, 107, 90, 0.1), transparent 70%),
     linear-gradient(180deg, #fffaf0 0%, #fff7e9 48%, #fffaf0 100%);
+}
+
+main {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+@supports (overflow: clip) {
+  html,
+  body,
+  main {
+    overflow-x: clip;
+  }
 }
 
 /* ---------- textura de folha de papel ----------
@@ -237,8 +257,11 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
   position: fixed;
   z-index: 50;
   left: 0;
-  right: 0;
+  right: auto;
   bottom: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
   translate: 0 18px;
   display: flex;
   align-items: center;
