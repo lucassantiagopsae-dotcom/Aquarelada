@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 380" role="img" aria-label="Duas criancas brincando de cama de gato">
+  <defs>
+    <filter id="paper" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="3" seed="30"/><feColorMatrix type="saturate" values=".45"/><feBlend in="SourceGraphic" mode="soft-light"/></filter>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="10" stdDeviation="8" flood-color="#1b2635" flood-opacity=".16"/></filter>
+  </defs>
+  <rect width="560" height="380" rx="18" fill="#fffaf0"/>
+  <g filter="url(#paper)">
+    <circle cx="96" cy="92" r="72" fill="#f7d9cc" opacity=".64"/>
+    <circle cx="456" cy="100" r="76" fill="#eee3f7" opacity=".68"/>
+    <path d="M0 320c92-28 180-12 258 1 110 18 190-27 302-3v62H0z" fill="#f7efe2"/>
+  </g>
+  <g filter="url(#shadow)" stroke="#1b2635" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="176" cy="316" rx="56" ry="12" fill="#5a6b80" opacity=".13" stroke="none"/>
+    <ellipse cx="384" cy="316" rx="56" ry="12" fill="#5a6b80" opacity=".13" stroke="none"/>
+    <circle cx="164" cy="102" r="22" fill="#f3b090"/>
+    <path d="M148 100c8-22 41-23 51-1-15-9-30-6-43 0" fill="#4c2f28"/>
+    <path d="M151 128c-23 30-26 72-9 118 18 8 43 8 60-2 7-47-1-88-25-117z" fill="#ef6b5a"/>
+    <path d="M149 154c-30 23-51 52-64 87" fill="none"/>
+    <path d="M190 151c41 30 68 61 84 94" fill="none"/>
+    <path d="M144 246c-20 18-32 40-39 69" fill="none"/>
+    <path d="M202 244c20 19 34 42 42 72" fill="none"/>
+    <circle cx="398" cy="102" r="22" fill="#f3b090"/>
+    <path d="M382 100c8-22 40-24 52-1-14-8-31-6-44 0" fill="#4c2f28"/>
+    <path d="M382 127c-22 31-26 73-10 119 18 8 44 8 62-2 8-48 0-88-24-117z" fill="#2b8fb8"/>
+    <path d="M377 151c-40 31-68 62-83 95" fill="none"/>
+    <path d="M417 154c31 24 52 52 65 87" fill="none"/>
+    <path d="M371 246c-20 18-34 41-42 70" fill="none"/>
+    <path d="M433 244c21 19 35 42 42 72" fill="none"/>
+    <path d="M242 199l94-1M254 169l70 60M324 169l-70 60M250 170l82 58M332 170l-82 58" fill="none" stroke="#7b6cc7" stroke-width="4" opacity=".92"/>
+    <path d="M199 154c28 18 47 31 55 45" fill="none" stroke="#7b6cc7" stroke-width="4"/>
+    <path d="M377 153c-28 18-46 32-55 45" fill="none" stroke="#7b6cc7" stroke-width="4"/>
+    <path d="M96 315h34" stroke="#f4bd45"/>
+    <path d="M462 315h34" stroke="#4f9f68"/>
+  </g>
+</svg>

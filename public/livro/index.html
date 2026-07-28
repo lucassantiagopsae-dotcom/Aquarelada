@@ -30,22 +30,16 @@
 <body>
 
 <!-- ==========================================================
-     CABEÇALHO — layout dependente de estado.
-     No topo fica transparente e sem CTA, para não cortar o hero.
+     CTA FLUTUANTE — única navegação persistente da página.
+     Some sobre o hero (onde já existe um CTA grande) e aparece
+     depois, acompanhando a rolagem até o fechamento.
      ========================================================== -->
-<header class="cabecalho" id="cabecalho">
-  <div class="cabecalho__inner">
-    <a class="cabecalho__marca" href="/">
-      <img class="cabecalho__logo" src="/assets/images/aquarelada-logo-alfa.webp" alt="Aquarelada Editora">
-      <span class="cabecalho__selo">Livro infantil</span>
-    </a>
-    <div class="cabecalho__acao">
-      <a class="btn btn--principal btn--pequeno" href="https://www.amazon.com.br/s?k=Um+Dia+Diferente+Como+Era+Antigamente" target="_blank" rel="noopener">
-        Comprar<span class="rotulo-longo">&nbsp;na Amazon</span>
-      </a>
-    </div>
-  </div>
-</header>
+<a class="cta-flutuante" id="cta-flutuante" href="https://www.amazon.com.br/s?k=Um+Dia+Diferente+Como+Era+Antigamente" target="_blank" rel="noopener">
+  Comprar na Amazon
+  <svg class="btn__seta" width="16" height="12" viewBox="0 0 18 14" fill="none" aria-hidden="true">
+    <path d="M1 7h15M11 2l5 5-5 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</a>
 
 <main>
 
@@ -122,80 +116,45 @@
   </div>
 </section>
 
-<!-- ============ S3 · DOBRA 2 — o convite, sem culpa ============ -->
-<section class="convite"
-         data-arquetipo="comparacao-lado-a-lado"
-         data-tom="claro"
-         data-forma="contido"
-         data-tratamento="texto-puro"
-         data-ancora="visual"
-         data-cabecalho="padrao"
-         data-divisa="reta">
-  <div class="contido">
-    <div class="convite__topo">
-      <div class="reveal">
-        <p class="chapeu">O convite</p>
-        <h2>Uma brincadeira já pode mudar o dia.</h2>
-        <p class="convite__texto">
-          A rotina é corrida, o cansaço existe e as telas fazem parte da vida moderna.
-          Este livro não pede uma infância perfeita. Ele oferece um convite possível:
-          alguns minutos de presença real, uma leitura compartilhada e uma brincadeira
-          simples que pode virar memória.
-        </p>
-      </div>
-
-      <figure class="convite__foto fita reveal">
-        <img src="/assets/images/aquarelada-pipa.webp" alt="Criança empinando uma pipa em uma tarde ensolarada" loading="lazy">
-        <figcaption>Uma tarde inteira pode começar com uma pipa no céu.</figcaption>
-      </figure>
-    </div>
-
-    <div class="confronto">
-      <div class="confronto__lado confronto__lado--nao reveal">
-        <h3>O que este livro não é</h3>
-        <ul>
-          <li><span>Um manifesto contra a tecnologia.</span></li>
-          <li><span>Um manual de bons pais.</span></li>
-        </ul>
-      </div>
-
-      <div class="confronto__lado confronto__lado--sim reveal">
-        <h3>O que ele é</h3>
-        <ul>
-          <li>Um respiro afetivo para a família inteira.</li>
-          <li>Uma ponte entre a infância de ontem e a infância de hoje.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ S4 · respiro escuro, entra por sobreposição ============ -->
-<section class="respiro"
-         data-arquetipo="citacao-solta"
+<!-- ============ S3 · a história, os personagens, as ilustrações ============ -->
+<section class="historia"
+         data-arquetipo="zigue-zague"
          data-tom="escuro"
          data-forma="bloco-contido"
-         data-tratamento="bloco-cor"
-         data-divisa="sobreposta">
+         data-tratamento="card-escuro"
+         data-ancora="visual"
+         data-divisa="recorte">
   <div class="contido">
-    <div class="respiro__bloco reveal">
-      <div class="respiro__galeria" aria-hidden="true">
-        <img class="respiro__cartao respiro__cartao--um" src="/assets/images/aquarelada-pipa.webp" alt="">
-        <img class="respiro__cartao respiro__cartao--dois" src="/assets/images/aquarelada-carrinho-rolima.webp" alt="">
-        <img class="respiro__cartao respiro__cartao--tres" src="/assets/images/aquarelada-elastico.webp" alt="">
+    <div class="historia__bloco reveal">
+      <p class="chapeu chapeu--claro">A história</p>
+
+      <div class="historia__linha">
+        <div>
+          <h2>Enzo e Valentina deixam a tela em pausa por um dia — e a tarde vira outra coisa.</h2>
+          <p>Sem pressa, sem tarefa marcada: só um irmão, uma irmã e um quintal cheio de
+            possibilidade. É esse o dia que o livro conta, do primeiro tédio até a última risada.</p>
+        </div>
+        <figure class="historia__foto fita reveal">
+          <img src="/assets/images/aquarelada-elastico.webp" alt="Crianças brincando juntas de pular elástico em uma rua tranquila" loading="lazy">
+        </figure>
       </div>
-      <blockquote>
-        Não é sobre ter <strong>mais tempo</strong>. É sobre o que cabe dentro do tempo que já existe.
-      </blockquote>
-      <footer>
-        Alguns minutos de presença real valem mais do que uma tarde inteira dividida
-        com a tela. É disso que a história trata, do começo ao fim.
-      </footer>
+
+      <div class="historia__linha historia__linha--inversa">
+        <div>
+          <h3>Pintado à mão, página a página.</h3>
+          <p>Cada cena é aquarela de verdade: a tinta vaza um pouco fora da linha, a luz é
+            de fim de tarde, o quintal parece com o seu. É o tipo de ilustração que convida
+            a criança a apontar cada detalhe antes de virar a página.</p>
+        </div>
+        <figure class="historia__foto fita reveal">
+          <img src="/assets/images/aquarelada-pipa.webp" alt="Criança empinando uma pipa colorida contra o céu" loading="lazy">
+        </figure>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ============ S5 · DOBRA 3 — as brincadeiras da história ============ -->
+<!-- ============ S4 · as dez brincadeiras da história ============ -->
 <section class="trilha" aria-label="As brincadeiras da história"
          data-arquetipo="scroll-horizontal"
          data-tom="claro"
@@ -206,13 +165,7 @@
 
   <div class="trilha__intro reveal">
     <p class="trilha__frase">
-      Na história, Enzo e Valentina atravessam <span>nove brincadeiras</span> que os pais reconhecem de cor.
-    </p>
-    <p class="trilha__dica">
-      Arraste para o lado
-      <svg width="20" height="12" viewBox="0 0 20 12" fill="none" aria-hidden="true">
-        <path d="M1 6h17M13 1l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
+      Na história, Enzo e Valentina atravessam <span>nove brincadeiras</span> que você também deve lembrar.
     </p>
   </div>
 
@@ -256,6 +209,54 @@
   </div>
 </section>
 
+<!-- ============ S5 · o bônus, primeiro ============ -->
+<section class="bonus"
+         data-arquetipo="bento-assimetrico"
+         data-tom="claro"
+         data-forma="contido"
+         data-tratamento="card-branco"
+         data-ancora="visual"
+         data-cabecalho="padrao"
+         data-divisa="reta">
+  <div class="contido">
+    <div class="reveal">
+      <p class="chapeu">O bônus</p>
+      <h2>Quem compra o livro leva o Super Manual junto.</h2>
+      <p class="bonus__texto">
+        Um acervo digital de brincadeiras clássicas para transformar a inspiração da
+        história em um dia inesquecível. O acesso vem por QR Code, dentro do próprio livro.
+      </p>
+    </div>
+
+    <div class="bento">
+      <div class="celula celula--principal reveal">
+        <span class="confete confete--bonus" aria-hidden="true"></span>
+        <img src="/assets/images/supermanual-logo.webp" alt="Selo do Super Manual de Brincadeiras">
+        <h3>Super Manual de Brincadeiras</h3>
+        <p>Incluso na compra do livro, sem custo adicional.</p>
+      </div>
+
+      <div class="celula reveal">
+        <span class="celula__etiqueta">Como brincar</span>
+        <h3>Regras explicadas</h3>
+        <p>Cada brincadeira com o passo a passo, para aprender ou relembrar.</p>
+      </div>
+
+      <div class="celula reveal">
+        <span class="celula__etiqueta">O que usar</span>
+        <h3>Materiais simples</h3>
+        <p>Barbante, giz, tampinha. O que já está em casa costuma bastar.</p>
+      </div>
+
+      <div class="celula celula--destaque reveal">
+        <span class="celula__etiqueta">Acesso</span>
+        <h3>Um QR Code dentro do livro</h3>
+        <p>Aponte a câmera e o manual abre no celular. Utilize sempre que quiser, sem prazo para expirar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ S6 · da leitura para a brincadeira ============ -->
 <section class="continua"
          data-arquetipo="stepper-numerado"
@@ -275,7 +276,7 @@
         <li class="passo">
           <span class="passo__num" aria-hidden="true">01</span>
           <h3>Leiam juntos</h3>
-          <p>Ritmo poético, feito para leitura em voz alta com a criança no colo.</p>
+          <p>Ritmo poético, feito para leitura compartilhada em voz alta.</p>
         </li>
         <li class="passo">
           <span class="passo__num" aria-hidden="true">02</span>
@@ -290,62 +291,14 @@
         <li class="passo">
           <span class="passo__num" aria-hidden="true">04</span>
           <h3>Brinquem</h3>
-          <p>Regras, materiais e formas de brincar, prontos para usar no quintal.</p>
+          <p>Regras, materiais e formas de brincar, pronto para começar a diversão.</p>
         </li>
       </ol>
     </div>
   </div>
 </section>
 
-<!-- ============ S7 · o bônus ============ -->
-<section class="bonus"
-         data-arquetipo="bento-assimetrico"
-         data-tom="claro"
-         data-forma="contido"
-         data-tratamento="card-branco"
-         data-ancora="visual"
-         data-cabecalho="padrao"
-         data-divisa="reta">
-  <div class="contido">
-    <div class="reveal">
-      <p class="chapeu">O bônus</p>
-      <h2>Quem compra o livro leva o Super Manual junto.</h2>
-      <p class="bonus__texto">
-        Um acervo digital de brincadeiras clássicas para transformar a inspiração da
-        história em tarde de quintal. O acesso vem por QR Code, dentro do próprio livro.
-      </p>
-    </div>
-
-    <div class="bento">
-      <div class="celula celula--principal reveal">
-        <span class="confete confete--bonus" aria-hidden="true"></span>
-        <img src="/assets/images/supermanual-logo.webp" alt="Selo do Super Manual de Brincadeiras">
-        <h3>Super Manual de Brincadeiras</h3>
-        <p>Incluso na compra do livro, sem custo adicional.</p>
-      </div>
-
-      <div class="celula reveal">
-        <span class="celula__etiqueta">Como brincar</span>
-        <h3>Regras explicadas</h3>
-        <p>Cada brincadeira com o passo a passo que os avós sabiam de cabeça.</p>
-      </div>
-
-      <div class="celula reveal">
-        <span class="celula__etiqueta">O que usar</span>
-        <h3>Materiais simples</h3>
-        <p>Barbante, giz, tampinha. O que já está em casa costuma bastar.</p>
-      </div>
-
-      <div class="celula celula--destaque reveal">
-        <span class="celula__etiqueta">Acesso</span>
-        <h3>Um QR Code dentro do livro</h3>
-        <p>Aponte a câmera e o manual abre no celular. Sem cadastro, sem aplicativo, sem prazo para expirar.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ S8 · DOBRA 4 — Inteligência Afetiva ============ -->
+<!-- ============ S7 · Inteligência Afetiva ============ -->
 <section class="afeto"
          data-arquetipo="citacao-solta"
          data-tom="cor"
@@ -366,7 +319,80 @@
   </div>
 </section>
 
-<!-- ============ S9 · fechamento ============ -->
+<!-- ============ S8 · o convite, sem culpa ============ -->
+<section class="convite"
+         data-arquetipo="comparacao-lado-a-lado"
+         data-tom="claro"
+         data-forma="contido"
+         data-tratamento="texto-puro"
+         data-ancora="visual"
+         data-cabecalho="padrao"
+         data-divisa="reta">
+  <div class="contido">
+    <div class="convite__topo">
+      <div class="reveal">
+        <p class="chapeu">O convite</p>
+        <h2>Uma brincadeira já pode mudar o dia.</h2>
+        <p class="convite__texto">
+          A rotina é corrida, o cansaço existe e as telas fazem parte da vida moderna.
+          Este livro não pede uma infância perfeita. Ele oferece um convite possível:
+          alguns minutos de presença real, uma leitura compartilhada e uma brincadeira
+          simples que pode virar memória.
+        </p>
+      </div>
+
+      <figure class="convite__foto fita reveal">
+        <img src="/assets/images/aquarelada-carrinho-rolima.webp" alt="Criança descendo a ladeira em um carrinho de rolimã" loading="lazy">
+        <figcaption>Um carrinho de rolimã e uma ladeira já bastam para uma tarde inteira.</figcaption>
+      </figure>
+    </div>
+
+    <div class="confronto">
+      <div class="confronto__lado confronto__lado--nao reveal">
+        <h3>O que este livro não é</h3>
+        <ul>
+          <li><span>Um manifesto contra a tecnologia.</span></li>
+          <li><span>Um manual de bons pais.</span></li>
+        </ul>
+      </div>
+
+      <div class="confronto__lado confronto__lado--sim reveal">
+        <h3>O que ele é</h3>
+        <ul>
+          <li>Um respiro afetivo para a família inteira.</li>
+          <li>Uma ponte entre a infância de ontem e a infância de hoje.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ S9 · respiro escuro, entra por sobreposição ============ -->
+<section class="respiro"
+         data-arquetipo="citacao-solta"
+         data-tom="escuro"
+         data-forma="bloco-contido"
+         data-tratamento="bloco-cor"
+         data-divisa="sobreposta">
+  <div class="contido">
+    <div class="respiro__bloco reveal">
+      <div class="respiro__galeria" aria-hidden="true">
+        <img class="respiro__cartao respiro__cartao--um" src="/assets/images/aquarelada-pipa.webp" alt="">
+        <img class="respiro__cartao respiro__cartao--dois" src="/assets/images/aquarelada-carrinho-rolima.webp" alt="">
+        <img class="respiro__cartao respiro__cartao--tres" src="/assets/images/aquarelada-elastico.webp" alt="">
+      </div>
+      <blockquote>
+        Não é sobre ter <strong>mais tempo</strong>. É sobre o que cabe dentro do tempo que já existe.
+      </blockquote>
+      <footer>
+        Alguns minutos de presença real valem mais do que uma tarde inteira dividida
+        com a tela. É disso que a história trata, do começo ao fim.
+      </footer>
+    </div>
+  </div>
+</section>
+
+<!-- ============ S10 · fechamento ============ -->
 <section class="fechar"
          data-arquetipo="cta-full-bleed"
          data-tom="escuro"
@@ -382,10 +408,10 @@
     </div>
 
     <div class="reveal">
-      <h2>Leve para casa uma tarde que ninguém esquece.</h2>
+      <h2>Leve para casa um dia que ninguém esquece.</h2>
       <p class="fechar__texto">
         O livro impresso chega pela Amazon, e o Super Manual de Brincadeiras vem junto,
-        por QR Code. Para pais, avós, tios, padrinhos — e para crianças de 5 a 9 anos.
+        por QR Code. Para pais, avós, tios, padrinhos — e para crianças de 4 a 10 anos.
       </p>
       <div class="fechar__acoes">
         <a class="btn btn--claro" href="https://www.amazon.com.br/s?k=Um+Dia+Diferente+Como+Era+Antigamente" target="_blank" rel="noopener">
@@ -412,11 +438,12 @@
   <div class="contido">
     <div class="rodape__topo">
       <p class="rodape__frase">Histórias, brincadeiras e memórias para colorir a infância.</p>
-      <nav class="rodape__links" aria-label="Links da Aquarelada">
-        <a href="/">Aquarelada Editora</a>
-        <a href="/supermanual/">Super Manual de Brincadeiras</a>
-        <a href="https://www.amazon.com.br/s?k=Um+Dia+Diferente+Como+Era+Antigamente" target="_blank" rel="noopener">Comprar na Amazon</a>
-      </nav>
+      <a class="btn btn--claro rodape__cta" href="https://www.amazon.com.br/s?k=Um+Dia+Diferente+Como+Era+Antigamente" target="_blank" rel="noopener">
+        Comprar na Amazon
+        <svg class="btn__seta" width="18" height="14" viewBox="0 0 18 14" fill="none" aria-hidden="true">
+          <path d="M1 7h15M11 2l5 5-5 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
     </div>
     <div class="rodape__base">
       <img class="rodape__logo" src="/assets/images/aquarelada-logo-alfa.webp" alt="Aquarelada Editora">

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 380" role="img" aria-label="Crianca brincando com ioio">
+  <defs>
+    <filter id="paper" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="3" seed="21"/><feColorMatrix type="saturate" values=".45"/><feBlend in="SourceGraphic" mode="soft-light"/></filter>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="10" stdDeviation="8" flood-color="#1b2635" flood-opacity=".16"/></filter>
+  </defs>
+  <rect width="560" height="380" rx="18" fill="#fffaf0"/>
+  <g filter="url(#paper)">
+    <circle cx="104" cy="92" r="78" fill="#eee3f7" opacity=".72"/>
+    <circle cx="452" cy="104" r="70" fill="#d9ecf7" opacity=".7"/>
+    <circle cx="426" cy="292" r="86" fill="#fbdcd6" opacity=".62"/>
+    <path d="M0 320c92-32 176-13 248 0 106 19 190-28 312-3v63H0z" fill="#f7efe2"/>
+  </g>
+  <g fill="#4f9f68" opacity=".72">
+    <path d="M76 268c23-48 48-64 80-80-18 45-42 69-80 80z"/>
+    <path d="M470 260c-28-40-54-60-90-70 22 44 51 64 90 70z"/>
+  </g>
+  <g filter="url(#shadow)" stroke="#1b2635" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="246" cy="314" rx="66" ry="13" fill="#5a6b80" opacity=".14" stroke="none"/>
+    <circle cx="250" cy="92" r="24" fill="#f3b090"/>
+    <path d="M232 90c9-25 45-24 56-1-15-10-33-7-49 0" fill="#4c2f28"/>
+    <path d="M239 108c8 9 22 9 31-1" fill="none"/>
+    <path d="M236 128c-25 28-30 75-16 124 20 9 50 8 68-3 9-51 2-94-22-122z" fill="#f4bd45"/>
+    <path d="M226 158c-34 22-55 48-65 84" fill="none"/>
+    <path d="M272 156c32 23 52 52 59 88" fill="none"/>
+    <path d="M221 252c-23 15-37 35-44 62" fill="none"/>
+    <path d="M286 250c22 16 38 37 47 64" fill="none"/>
+    <path d="M166 314h34" stroke="#ef6b5a"/>
+    <path d="M321 315h34" stroke="#2b8fb8"/>
+    <path d="M330 244c30 22 58 20 86 2" fill="none" stroke="#5a6b80" opacity=".64"/>
+    <path d="M414 246v36" fill="none" stroke="#5a6b80"/>
+    <circle cx="414" cy="304" r="35" fill="#ef6b5a"/>
+    <circle cx="414" cy="304" r="17" fill="#2b8fb8"/>
+    <circle cx="414" cy="304" r="6" fill="#f4bd45"/>
+  </g>
+</svg>

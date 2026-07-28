@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 380" role="img" aria-label="Crianca pulando amarelinha">
+  <defs>
+    <filter id="paper" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="3" seed="12"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feBlend in="SourceGraphic" mode="soft-light"/>
+    </filter>
+    <filter id="softShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="10" stdDeviation="8" flood-color="#1b2635" flood-opacity=".16"/>
+    </filter>
+  </defs>
+  <rect width="560" height="380" rx="18" fill="#fffaf0"/>
+  <g filter="url(#paper)">
+    <circle cx="88" cy="78" r="60" fill="#d9ecf7" opacity=".72"/>
+    <circle cx="468" cy="94" r="74" fill="#f7d9cc" opacity=".62"/>
+    <circle cx="430" cy="286" r="86" fill="#e1f0d8" opacity=".62"/>
+    <path d="M0 322c82-34 154-19 235-5 92 17 172-29 325 8v55H0z" fill="#f7efe2"/>
+  </g>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <g stroke="#5a6b80" stroke-width="4" opacity=".72">
+      <path d="M188 314l170-16"/>
+      <path d="M205 272l140-10"/>
+      <path d="M220 232l112-8"/>
+      <path d="M233 196l90-6"/>
+      <path d="M195 314l45-121"/>
+      <path d="M355 298l-34-108"/>
+      <path d="M236 271l95-7"/>
+      <path d="M248 231l73-6"/>
+    </g>
+    <g stroke="#f4bd45" stroke-width="6" opacity=".55">
+      <path d="M123 83c33-18 78-12 112 1"/>
+      <path d="M411 308c22-9 50-7 75 2"/>
+    </g>
+  </g>
+  <g filter="url(#softShadow)" stroke="#1b2635" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="278" cy="314" rx="42" ry="11" fill="#5a6b80" opacity=".15" stroke="none"/>
+    <circle cx="276" cy="102" r="24" fill="#f3b090"/>
+    <path d="M260 96c8-23 42-23 51-2-12-12-29-8-42-1" fill="#4c2f28"/>
+    <path d="M263 109c7 10 20 12 29 2" fill="none"/>
+    <path d="M270 128c-18 18-23 53-8 84 9 18 32 16 38-3 10-31 7-60-9-81z" fill="#ef6b5a"/>
+    <path d="M262 152c-31 13-48 35-55 61" fill="none"/>
+    <path d="M293 153c28 12 45 33 55 58" fill="none"/>
+    <path d="M271 210c-28 14-44 36-47 68" fill="none"/>
+    <path d="M297 209c22 17 30 40 23 73" fill="none"/>
+    <path d="M214 279h34" stroke="#2b8fb8"/>
+    <path d="M309 285h34" stroke="#4f9f68"/>
+    <path d="M255 137c16 11 37 11 52 0" stroke="#fffaf0" opacity=".7"/>
+    <path d="M252 163c18 10 42 10 62-1" stroke="#fffaf0" opacity=".7"/>
+  </g>
+  <g fill="#4f9f68" opacity=".72">
+    <path d="M68 278c20-42 46-56 74-69-20 33-43 56-74 69z"/>
+    <path d="M486 244c-22-29-43-42-71-49 17 29 38 46 71 49z"/>
+  </g>
+  <g fill="#ef6b5a" opacity=".72">
+    <circle cx="84" cy="240" r="8"/>
+    <circle cx="108" cy="226" r="6"/>
+    <circle cx="456" cy="214" r="7"/>
+    <circle cx="484" cy="226" r="5"/>
+  </g>
+</svg>

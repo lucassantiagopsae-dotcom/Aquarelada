@@ -228,64 +228,47 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
 }
 
 /* =========================================================
-   CABEÇALHO — layout dependente de estado
-   No topo: transparente, navegação deslocada para a esquerda
-   junto ao logo, para não cortar a composição do hero.
-   Após rolar: fundo sólido, sombra, altura menor.
+   CTA FLUTUANTE — única navegação persistente da página.
+   Fixo, sempre visível a partir do momento em que o hero sai
+   de cena; some de novo perto do fechamento, onde já existe
+   um CTA grande fazendo esse trabalho.
    ========================================================= */
 
-.cabecalho {
+.cta-flutuante {
   position: fixed;
-  inset: 0 0 auto 0;
   z-index: 50;
-  padding-block: var(--e3);
-  transition: padding var(--transicao), background var(--transicao), box-shadow var(--transicao);
-}
-
-.cabecalho__inner {
-  width: var(--largura);
-  margin-inline: auto;
-  display: flex;
+  left: 50%;
+  bottom: var(--e3);
+  translate: -50% 12px;
+  display: inline-flex;
   align-items: center;
-  gap: var(--e4);
-}
-
-.cabecalho__marca { display: flex; align-items: center; gap: var(--e2); }
-
-.cabecalho__logo { height: 40px; width: auto; transition: height var(--transicao); }
-
-.cabecalho__selo {
-  font-size: 12px;
+  gap: var(--e2);
+  font-family: "Nunito", sans-serif;
   font-weight: 800;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--tinta-suave);
-  border-left: 1px solid rgba(27, 38, 53, 0.18);
-  padding-left: var(--e2);
-}
-
-.cabecalho__acao { margin-left: auto; }
-
-.cabecalho.rolado {
-  padding-block: var(--e2);
-  background: rgba(255, 250, 240, 0.9);
-  backdrop-filter: blur(14px);
-  box-shadow: 0 1px 0 rgba(27, 38, 53, 0.08), 0 12px 30px -22px rgba(27, 38, 53, 0.5);
-}
-.cabecalho.rolado .cabecalho__logo { height: 32px; }
-
-/* O CTA do cabeçalho só aparece depois que o hero sai de cena —
-   no topo ele competiria com o CTA principal. */
-.cabecalho__acao .btn {
+  font-size: 15px;
+  color: var(--marfim);
+  background: var(--coral-forte);
+  padding: 14px 26px;
+  border-radius: var(--r-pill);
+  box-shadow: var(--sombra-coral);
   opacity: 0;
-  transform: translateY(-6px);
   pointer-events: none;
-  transition: opacity 220ms ease-out, transform 220ms ease-out;
+  transition: opacity 220ms ease-out, translate 220ms ease-out, transform var(--transicao);
 }
-.cabecalho.rolado .cabecalho__acao .btn {
+
+.cta-flutuante.visivel {
   opacity: 1;
-  transform: none;
+  translate: -50% 0;
   pointer-events: auto;
+}
+
+.cta-flutuante:hover { transform: translateY(-2px); }
+.cta-flutuante .btn__seta { transition: transform var(--transicao); }
+.cta-flutuante:hover .btn__seta { transform: translateX(4px); }
+
+@media (min-width: 720px) {
+  .cta-flutuante { left: auto; right: var(--e4); bottom: var(--e4); translate: 0 12px; }
+  .cta-flutuante.visivel { translate: 0 0; }
 }
 
 /* ---------- botões ---------- */
@@ -318,9 +301,28 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
   pointer-events: none;
 }
 
-.btn--principal { background: var(--coral-forte); color: var(--marfim); }
+.btn--principal {
+  background: linear-gradient(168deg, #d24a37 0%, var(--coral-forte) 62%);
+  color: var(--marfim);
+  box-shadow: var(--sombra-coral);
+}
 .btn--principal:hover { transform: translateY(-2px); }
 .btn--principal:hover::after { opacity: 1; }
+
+/* CTA principal do hero: maior, com respiro sutil para puxar o olho
+   assim que a dobra 1 carrega — sem depender do hover para chamar atenção. */
+.hero__acoes .btn--principal {
+  padding: 22px 42px;
+  font-size: 19px;
+  animation: respirarCta 2.6s ease-in-out 900ms infinite;
+}
+@keyframes respirarCta {
+  0%, 100% { box-shadow: var(--sombra-coral); }
+  50% { box-shadow: 0 24px 54px -12px rgba(184, 61, 43, 0.62); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__acoes .btn--principal { animation: none; }
+}
 
 .btn--claro { background: var(--marfim); color: var(--tinta); }
 .btn--claro:hover { transform: translateY(-2px); background: var(--branco); }
@@ -408,12 +410,27 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
 .hero__livro {
   position: relative;
   z-index: 2;
-  margin: var(--e6) auto 0;
-  width: min(500px, 80vw);
+  margin: var(--e5) auto 0;
+  width: min(600px, 88vw);
   /* o corte na borda é o que cria a vontade de rolar */
   margin-bottom: -112px;
   /* entra junto com o resto do hero e só então começa a flutuar */
   animation: entrar 500ms ease-out 180ms both, flutuar 6s ease-in-out 700ms infinite;
+}
+
+/* holofote suave atrás do livro: ele precisa ler como O produto,
+   não como mais uma ilustração decorativa da dobra. */
+.hero__livro::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 50%;
+  top: 38%;
+  width: 118%;
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  background: radial-gradient(circle, rgba(239, 107, 90, 0.24), transparent 68%);
+  pointer-events: none;
 }
 
 .ebook-png {
@@ -606,7 +623,82 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
 .marquee::after { right: 0; background: linear-gradient(270deg, var(--marfim), transparent); }
 
 /* =========================================================
-   S3 — comparacao-lado-a-lado
+   S3 — zigue-zague (a história, os personagens, as ilustrações)
+   Mesma linguagem visual do bloco escuro contido que já aparece
+   mais adiante (continua/respiro), só que com duas linhas de
+   imagem+texto alternadas em vez de citação ou stepper.
+   ========================================================= */
+
+.historia { background: var(--marfim); padding-block: var(--e8); }
+
+.chapeu--claro { color: #ffb3a6; }
+
+.historia__bloco {
+  position: relative;
+  background: var(--tinta);
+  color: var(--marfim);
+  border-radius: var(--r-lg);
+  padding: clamp(var(--e6), 8vw, 110px) clamp(var(--e4), 6vw, 90px);
+  box-shadow: var(--sombra-tinta);
+  overflow: hidden;
+  /* divisa recorte: um triângulo raso mordendo o canto superior */
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 46px, 64px 0);
+}
+
+.historia__bloco .chapeu { margin-bottom: var(--e5); }
+
+.historia__linha {
+  display: grid;
+  grid-template-columns: 56fr 44fr;
+  gap: clamp(var(--e5), 6vw, var(--e7));
+  align-items: center;
+}
+.historia__linha + .historia__linha {
+  margin-top: clamp(var(--e6), 8vw, 96px);
+}
+.historia__linha--inversa { grid-template-columns: 44fr 56fr; }
+.historia__linha--inversa > *:first-child { order: 2; }
+.historia__linha--inversa > *:last-child { order: 1; }
+
+.historia h2 {
+  font-size: clamp(1.6rem, 3vw, 2.3rem);
+  line-height: 1.1;
+  max-width: 18ch;
+}
+.historia h3 {
+  font-size: clamp(1.3rem, 2.2vw, 1.7rem);
+  line-height: 1.16;
+  max-width: 16ch;
+}
+.historia__linha p {
+  margin-top: var(--e3);
+  color: rgba(255, 250, 240, 0.68);
+  max-width: 42ch;
+}
+
+.historia__foto {
+  margin: 0;
+  background: var(--branco);
+  padding: 10px 10px 0;
+  border-radius: var(--r-sm);
+  box-shadow: 0 26px 48px -20px rgba(0, 0, 0, 0.45);
+  rotate: -1.6deg;
+  transition: rotate var(--transicao);
+}
+.historia__linha--inversa .historia__foto { rotate: 1.6deg; }
+.historia__foto:hover { rotate: 0deg; }
+.historia__foto img { border-radius: 8px 8px 2px 2px; aspect-ratio: 1.3 / 1; object-fit: cover; }
+
+@media (max-width: 960px) {
+  .historia__linha,
+  .historia__linha--inversa { grid-template-columns: 1fr; }
+  .historia__linha--inversa > *:first-child,
+  .historia__linha--inversa > *:last-child { order: initial; }
+  .historia__foto { max-width: 360px; margin-inline: auto; }
+}
+
+/* =========================================================
+   S8 — comparacao-lado-a-lado
    ========================================================= */
 
 .convite { padding-block: var(--e9) var(--e8); background: var(--areia); }
@@ -1350,10 +1442,11 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
 }
 
 .rodape__topo {
-  display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  gap: var(--e6);
-  align-items: start;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--e5);
   padding-bottom: var(--e6);
   border-bottom: 1px solid rgba(255, 250, 240, 0.18);
 }
@@ -1366,9 +1459,7 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
   max-width: 20ch;
 }
 
-.rodape__links { display: grid; gap: var(--e2); }
-.rodape__links a { color: rgba(255, 250, 240, 0.72); transition: color var(--transicao); }
-.rodape__links a:hover { color: #ffc7bd; }
+.rodape__cta { flex: none; }
 
 .rodape__base {
   margin-top: var(--e4);
@@ -1380,10 +1471,14 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
   font-size: 14px;
   color: rgba(255, 250, 240, 0.62);
 }
+/* versão monocromática branca: não existe um arquivo dedicado ainda,
+   então a marca (linha + mancha aquarelada) é convertida por filtro —
+   brightness(0) achata tudo a preto antes do invert virar branco. */
 .rodape__logo {
   height: 40px;
   width: auto;
-  filter: brightness(1.5) saturate(0.78);
+  filter: brightness(0) invert(1);
+  opacity: 0.92;
 }
 
 /* =========================================================
@@ -1403,7 +1498,7 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
   .celula--destaque { grid-column: span 2; }
   .fechar__inner { grid-template-columns: 1fr; }
   .fechar__livro { margin-inline: auto; }
-  .rodape__topo { grid-template-columns: 1fr; gap: var(--e5); }
+  .rodape__topo { flex-direction: column; align-items: flex-start; gap: var(--e5); }
   .hero__deco { display: none; }
 
   .respiro__bloco {
@@ -1451,14 +1546,7 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
   .bento { grid-template-columns: 1fr; }
   .celula--principal, .celula--destaque { grid-column: span 1; }
 
-  /* a 360px o logo + o botão inteiro não cabem lado a lado: o logo encolhe
-     e o rótulo do cabeçalho fica só com o verbo (o CTA completo está no corpo) */
-  .cabecalho__selo { display: none; }
-  .cabecalho__inner { gap: var(--e2); }
-  .cabecalho__logo,
-  .cabecalho.rolado .cabecalho__logo { height: 26px; }
-  .cabecalho__acao .btn { padding: 10px 18px; font-size: 14px; }
-  .cabecalho__acao .btn .rotulo-longo { display: none; }
+  .cta-flutuante { font-size: 14px; padding: 12px 22px; }
 
   .respiro__bloco { padding-top: var(--e7); }
   .respiro__galeria { min-height: 134px; margin-top: -86px; }

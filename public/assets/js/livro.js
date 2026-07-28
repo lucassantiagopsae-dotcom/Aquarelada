@@ -5,15 +5,19 @@
 (function () {
   "use strict";
 
-  /* ---- cabeçalho dependente de estado ----
-     Transparente sobre o hero; sólido e com CTA depois que ele sai de cena. */
-  var cabecalho = document.getElementById("cabecalho");
-  if (cabecalho) {
+  /* ---- CTA flutuante dependente de estado ----
+     Aparece depois que o hero sai de cena; some de novo perto do
+     fechamento, onde a página já tem um CTA grande cuidando disso. */
+  var ctaFlutuante = document.getElementById("cta-flutuante");
+  var fechoDaPagina = document.querySelector(".fechar");
+  if (ctaFlutuante) {
     var gatilho = Math.round(window.innerHeight * 0.72);
     var pendente = false;
+    var dentroDoFecho = false;
 
     var atualizar = function () {
-      cabecalho.classList.toggle("rolado", window.scrollY > gatilho);
+      var visivel = window.scrollY > gatilho && !dentroDoFecho;
+      ctaFlutuante.classList.toggle("visivel", visivel);
       pendente = false;
     };
 
@@ -32,6 +36,16 @@
       gatilho = Math.round(window.innerHeight * 0.72);
       atualizar();
     });
+
+    if (fechoDaPagina && "IntersectionObserver" in window) {
+      new IntersectionObserver(
+        function (entradas) {
+          dentroDoFecho = entradas[0].isIntersecting;
+          atualizar();
+        },
+        { threshold: 0.15 }
+      ).observe(fechoDaPagina);
+    }
 
     atualizar();
   }
