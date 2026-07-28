@@ -247,12 +247,14 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
   font-weight: 800;
   font-size: 15px;
   color: var(--marfim);
+  white-space: nowrap;
   background: var(--coral-forte);
   padding: 14px 26px;
   border-radius: var(--r-pill);
   box-shadow: var(--sombra-coral);
   opacity: 0;
   pointer-events: none;
+  isolation: isolate;
   transition: opacity 220ms ease-out, translate 220ms ease-out, transform var(--transicao);
 }
 
@@ -269,6 +271,27 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
 @media (min-width: 720px) {
   .cta-flutuante { left: auto; right: var(--e4); bottom: var(--e4); translate: 0 12px; }
   .cta-flutuante.visivel { translate: 0 0; }
+}
+
+@media (max-width: 719px) {
+  .cta-flutuante::before {
+    content: "";
+    position: fixed;
+    z-index: -1;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 84px;
+    background: linear-gradient(
+      0deg,
+      rgba(255, 250, 240, 0.62) 0%,
+      rgba(255, 250, 240, 0.24) 58%,
+      rgba(255, 250, 240, 0) 100%
+    );
+    backdrop-filter: blur(3px) saturate(0.86);
+    -webkit-backdrop-filter: blur(3px) saturate(0.86);
+    pointer-events: none;
+  }
 }
 
 /* ---------- botões ---------- */
@@ -1471,14 +1494,31 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
   font-size: 14px;
   color: rgba(255, 250, 240, 0.62);
 }
-/* versão monocromática branca: não existe um arquivo dedicado ainda,
-   então a marca (linha + mancha aquarelada) é convertida por filtro —
-   brightness(0) achata tudo a preto antes do invert virar branco. */
+/* Mantem a textura da marca e neutraliza a cor por mesclagem. */
+.rodape__marca {
+  position: relative;
+  display: inline-flex;
+  width: fit-content;
+  isolation: isolate;
+}
+
+.rodape__marca::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(255, 250, 240, 0.84);
+  mix-blend-mode: color;
+  pointer-events: none;
+}
+
 .rodape__logo {
+  display: block;
   height: 40px;
   width: auto;
-  filter: brightness(0) invert(1);
-  opacity: 0.92;
+  filter: grayscale(1) brightness(1.42) contrast(0.94);
+  mix-blend-mode: screen;
+  opacity: 0.9;
 }
 
 /* =========================================================
@@ -1546,7 +1586,7 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
   .bento { grid-template-columns: 1fr; }
   .celula--principal, .celula--destaque { grid-column: span 1; }
 
-  .cta-flutuante { font-size: 14px; padding: 12px 22px; }
+  .cta-flutuante { bottom: var(--e2); font-size: 14px; padding: 12px 22px; }
 
   .respiro__bloco { padding-top: var(--e7); }
   .respiro__galeria { min-height: 134px; margin-top: -86px; }
