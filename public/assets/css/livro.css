@@ -1565,9 +1565,8 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
   display: inline-flex;
 }
 
-/* o logo já vem em versão branca. O filtro antigo (brightness(0) invert(1))
-   existia para clarear a versão azul e levaria todo pixel opaco a #fff,
-   achatando o sombreado que dá volume ao menino e ao livro. */
+/* o arquivo já é a versão branca do logo — sem filtro, que aqui só
+   repetiria o que o próprio desenho entrega */
 .rodape__logo {
   display: block;
   height: 40px;
