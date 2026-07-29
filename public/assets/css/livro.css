@@ -745,7 +745,9 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
 }
 .historia__linha--inversa .historia__foto { rotate: 1.6deg; }
 .historia__foto:hover { rotate: 0deg; }
-.historia__foto img { border-radius: 8px 8px 2px 2px; aspect-ratio: 1.3 / 1; object-fit: cover; }
+/* 1.6:1 é a proporção das ilustrações do livro — abaixo disso o recorte
+   central come personagens que estão nas bordas da cena */
+.historia__foto img { border-radius: 8px 8px 2px 2px; aspect-ratio: 1.6 / 1; object-fit: cover; }
 
 @media (max-width: 960px) {
   .historia__linha,
@@ -914,7 +916,7 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
 .respiro__cartao {
   position: absolute;
   width: clamp(170px, 18vw, 250px);
-  aspect-ratio: 1.48 / 1;
+  aspect-ratio: 1.6 / 1;
   object-fit: cover;
   border-radius: var(--r-sm);
   overflow: hidden;
@@ -1096,7 +1098,7 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
 
 .brincadeira img {
   width: 100%;
-  aspect-ratio: 1.48 / 1;
+  aspect-ratio: 1.6 / 1;
   object-fit: cover;
   border-radius: var(--r-sm) var(--r-sm) 0 0;
   background: #fffaf0;

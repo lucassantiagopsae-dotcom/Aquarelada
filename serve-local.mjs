@@ -1,8 +1,10 @@
 import http from "node:http";
 import fs from "node:fs";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 
-const root = process.cwd();
+// ancorado no próprio arquivo: `npm run dev` funciona de qualquer diretório
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "public");
 const types = {
   ".html": "text/html; charset=utf-8",
   ".js": "text/javascript; charset=utf-8",
