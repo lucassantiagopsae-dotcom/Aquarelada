@@ -466,7 +466,7 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
 /* sem o raio, as ilustrações decorativas leem como recorte colado */
 .hero__deco { border-radius: var(--r-sm); }
 
-/* --- e-book em PNG transparente, exibido por inteiro --- */
+/* --- foto do livro impresso, com fundo real --- */
 
 .hero__livro {
   position: relative;
@@ -495,6 +495,7 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
 .ebook-png {
   width: 100%;
   height: auto;
+  border-radius: var(--r-sm);
   filter: drop-shadow(0 34px 38px rgba(27, 38, 53, 0.22));
 }
 
@@ -603,82 +604,6 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
   border-radius: 2.5cqw;
   overflow: hidden;
 }
-
-/* =========================================================
-   S2 — faixa-marquee
-   ========================================================= */
-
-.marquee {
-  position: relative;
-  padding-block: var(--e5);
-  background: var(--marfim);
-  overflow: hidden;
-  padding-top: var(--e3);
-  /* A faixa é a mesma folha do hero, rasgada na base. Ela avança sobre a
-     seção seguinte (areia) para que o rasgo revele a folha de baixo —
-     sem esse transbordo o recorte apareceria contra a própria cor. */
-  z-index: 1;
-  margin-bottom: -72px;
-  padding-bottom: 116px;
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='300' preserveAspectRatio='none' viewBox='0 0 1200 300'%3E%3Cpath d='M0 0h1200v278c-32 7-68-9-100-3s-70 13-100 7-68-12-100-6-70 14-100 8-68-13-100-7-70 12-100 6-68-11-100-5-70 13-100 7-68-12-100-6-70 11-100 5-68-13-100-7-70 12-100 6z' fill='%23fff'/%3E%3C/svg%3E");
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='300' preserveAspectRatio='none' viewBox='0 0 1200 300'%3E%3Cpath d='M0 0h1200v278c-32 7-68-9-100-3s-70 13-100 7-68-12-100-6-70 14-100 8-68-13-100-7-70 12-100 6-68-11-100-5-70 13-100 7-68-12-100-6-70 11-100 5-68-13-100-7-70 12-100 6z' fill='%23fff'/%3E%3C/svg%3E");
-  -webkit-mask-size: 100% 100%;
-  mask-size: 100% 100%;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-}
-
-.marquee__trilho {
-  display: flex;
-  width: max-content;
-  gap: var(--e5);
-  animation: correr 42s linear infinite;
-}
-.marquee:hover .marquee__trilho { animation-play-state: paused; }
-
-@keyframes correr {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-
-.marquee__item {
-  display: flex;
-  align-items: center;
-  gap: var(--e5);
-  font-family: "Baloo 2", "Nunito", system-ui, sans-serif;
-  font-size: clamp(1.5rem, 3vw, 2.4rem);
-  font-weight: 500;
-  color: var(--tinta);
-  white-space: nowrap;
-}
-.marquee__item::after {
-  content: "";
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-  background: var(--coral);
-  flex: none;
-}
-
-/* bolinhas de gude entre os nomes: rodízio das cores de brincadeira */
-.marquee__item:nth-child(4n+1)::after { background: var(--deco-azul); }
-.marquee__item:nth-child(4n+2)::after { background: var(--deco-amarelo); }
-.marquee__item:nth-child(4n+3)::after { background: var(--deco-verde); }
-.marquee__item:nth-child(4n+4)::after { background: var(--coral); }
-
-/* esmaece nas bordas para sugerir continuidade */
-.marquee::before,
-.marquee::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 90px;
-  z-index: 2;
-  pointer-events: none;
-}
-.marquee::before { left: 0; background: linear-gradient(90deg, var(--marfim), transparent); }
-.marquee::after { right: 0; background: linear-gradient(270deg, var(--marfim), transparent); }
 
 /* =========================================================
    S3 — zigue-zague (a história, os personagens, as ilustrações)
@@ -981,7 +906,9 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
    ========================================================= */
 
 .trilha {
-  padding-block: var(--e8);
+  /* topo mais curto que o padrão: historia já fecha com --e8 de respiro,
+     repetir o mesmo valor aqui lia como um vão vazio entre as duas seções */
+  padding-block: var(--e6) var(--e8);
   background: var(--marfim);
   overflow: hidden;
 }
@@ -1304,11 +1231,10 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
   padding: var(--e6);
 }
 .celula--principal img {
-  width: min(250px, 62%);
+  width: min(320px, 78%);
   margin-bottom: var(--e2);
   filter: drop-shadow(0 18px 20px rgba(27, 38, 53, 0.18));
 }
-.celula--principal h3 { font-size: clamp(1.5rem, 2.4vw, 2rem); color: var(--marfim); }
 .celula--principal p { color: rgba(255, 250, 240, 0.72); }
 
 /* célula na cor de destaque — quebra a uniformidade da grade */
@@ -1384,6 +1310,13 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
   z-index: 2;
   max-width: 900px;
   margin-inline: auto;
+}
+
+.afeto__capa {
+  display: block;
+  width: min(420px, 78%);
+  margin: 0 auto var(--e5);
+  filter: drop-shadow(0 24px 30px rgba(27, 38, 53, 0.24));
 }
 
 @keyframes estrelaRespira {
@@ -1527,32 +1460,11 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
     radial-gradient(ellipse 60% 52% at 8% 0%, rgba(43, 143, 184, 0.22), transparent 70%),
     radial-gradient(ellipse 48% 50% at 92% 18%, rgba(123, 108, 199, 0.16), transparent 72%),
     #102236;
-  padding-block: var(--e7) var(--e5);
+  padding-block: var(--e6) var(--e5);
   color: var(--marfim);
 }
 
-.rodape__topo {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: var(--e5);
-  padding-bottom: var(--e6);
-  border-bottom: 1px solid rgba(255, 250, 240, 0.18);
-}
-
-.rodape__frase {
-  font-family: "Baloo 2", "Nunito", system-ui, sans-serif;
-  font-size: clamp(1.4rem, 2.6vw, 2.1rem);
-  line-height: 1.14;
-  font-weight: 500;
-  max-width: 20ch;
-}
-
-.rodape__cta { flex: none; }
-
 .rodape__base {
-  margin-top: var(--e4);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1599,7 +1511,6 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
   .fechar h2,
   .fechar__texto { margin-inline: auto; }
   .fechar__livro { margin-inline: auto; }
-  .rodape__topo { flex-direction: column; align-items: flex-start; gap: var(--e5); }
   .hero__deco { display: none; }
 
   .respiro__bloco {
@@ -1646,7 +1557,6 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
   .afeto h2,
   .fechar h2 { max-width: 100%; }
   .hero__livro { width: min(370px, 90vw); }
-  .marquee { padding-top: var(--e3); }
 
   .convite { padding-block: var(--e7) var(--e6); }
   .respiro, .continua, .afeto { padding-bottom: var(--e6); }
