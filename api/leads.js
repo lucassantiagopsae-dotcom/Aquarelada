@@ -16,6 +16,33 @@ function sanitize(value) {
   return String(value || "").trim();
 }
 
+// @upstash/redis ja serializa/desserializa JSON automaticamente. Le o valor
+// aceitando tanto uma string (comportamento antigo/manual) quanto um valor
+// ja desserializado pelo cliente, sem chamar JSON.parse em algo que ja e objeto.
+function parseStoredList(value) {
+  if (value == null) return [];
+  if (typeof value === "string") {
+    try {
+      return JSON.parse(value);
+    } catch {
+      return [];
+    }
+  }
+  return Array.isArray(value) ? value : [];
+}
+
+function parseStoredObject(value) {
+  if (value == null) return null;
+  if (typeof value === "string") {
+    try {
+      return JSON.parse(value);
+    } catch {
+      return null;
+    }
+  }
+  return value;
+}
+
 function escapeHtml(value) {
   return sanitize(value)
     .replace(/&/g, "&amp;")
@@ -202,19 +229,19 @@ export async function POST(request) {
           token: process.env.KV_REST_API_TOKEN
         });
 
-        await redis.set(`lead:${lead.id}`, JSON.stringify(lead));
+        await redis.set(`lead:${lead.id}`, lead);
 
         const formLeadsKey = `leads:${lead.form}`;
         const existingLeads = await redis.get(formLeadsKey);
-        const leadsList = existingLeads ? JSON.parse(existingLeads) : [];
+        const leadsList = parseStoredList(existingLeads);
         leadsList.push(lead.id);
-        await redis.set(formLeadsKey, JSON.stringify(leadsList));
+        await redis.set(formLeadsKey, leadsList);
 
         const allLeadsKey = "leads:all";
         const allLeads = await redis.get(allLeadsKey);
-        const allLeadsList = allLeads ? JSON.parse(allLeads) : [];
+        const allLeadsList = parseStoredList(allLeads);
         allLeadsList.push(lead.id);
-        await redis.set(allLeadsKey, JSON.stringify(allLeadsList));
+        await redis.set(allLeadsKey, allLeadsList);
       } catch (redisError) {
         console.error("Erro ao armazenar no Redis:", redisError);
       }
@@ -257,12 +284,12 @@ export async function GET(request) {
 
     const leadsKey = form ? `leads:${form}` : "leads:all";
     const leadsIds = await redis.get(leadsKey);
-    const leadsList = leadsIds ? JSON.parse(leadsIds) : [];
+    const leadsList = parseStoredList(leadsIds);
 
     const leads = await Promise.all(
       leadsList.map(async (id) => {
         const leadData = await redis.get(`lead:${id}`);
-        return leadData ? JSON.parse(leadData) : null;
+        return parseStoredObject(leadData);
       })
     );
 
