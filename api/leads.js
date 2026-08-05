@@ -165,10 +165,11 @@ async function dispatchEmails(lead, request) {
     const copy = replyCopy(key);
     await sendResendEmail({
       apiKey,
-      from: replyFrom,
+      from,
       to: lead.email,
       subject: copy.subject,
-      html: replyHtml(lead, copy, baseUrl)
+      html: replyHtml(lead, copy, baseUrl),
+      replyTo: replyFrom
     });
     result.reply = "sent";
   } catch (error) {
