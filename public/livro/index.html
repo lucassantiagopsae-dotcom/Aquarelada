@@ -102,10 +102,13 @@
         <div>
           <h2>Enzo e Valentina recebem um convite especial dos pais:</h2>
           <p>Que tal deixarem as telas descansarem um pouquinho? Hoje vai ser
-            <strong>UM DIA DIFERENTE, COMO ERA ANTIGAMENTE!!</strong>.</p>
+            <strong>UM DIA DIFERENTE, COMO ERA ANTIGAMENTE!</strong></p>
         </div>
         <figure class="historia__foto fita">
-          <img src="/assets/images/aquarelada-historia-enzo-valentina.webp" alt="Enzo e Valentina comemorando na sala enquanto a tela do videogame marca GAME OVER" loading="lazy">
+          <!-- sem loading="lazy" de propósito: dentro do bloco com clip-path,
+               imagem que chega depois da primeira pintura não repintava no
+               Safari do iPhone e só aparecia ao tocar na foto -->
+          <img src="/assets/images/aquarelada-historia-enzo-valentina.webp" alt="Enzo e Valentina comemorando na sala enquanto a tela do videogame marca GAME OVER">
         </figure>
       </div>
 
@@ -117,10 +120,51 @@
             pelas brincadeiras que atravessaram gerações.</p>
         </div>
         <figure class="historia__foto fita">
-          <img src="/assets/images/aquarelada-historia-piquenique.webp" alt="Enzo e Valentina em um piquenique com a família, sobre uma toalha xadrez" loading="lazy">
+          <img src="/assets/images/aquarelada-historia-piquenique.webp" alt="Enzo e Valentina em um piquenique com a família, sobre uma toalha xadrez">
         </figure>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ============ S3b · leitura compartilhada (vídeo em loop) ============
+     O vídeo é decorativo: sem som, sem controles, em loop. Só começa a
+     baixar quando chega perto da tela (livro.js cuida disso), para não
+     competir com o carregamento do resto da página. -->
+<section class="leitura"
+         data-arquetipo="video-full-bleed"
+         data-tom="claro"
+         data-forma="contido"
+         data-tratamento="video"
+         data-ancora="visual"
+         data-cabecalho="padrao"
+         data-divisa="reta">
+  <div class="contido">
+    <div class="leitura__texto reveal">
+      <p class="chapeu">Leitura compartilhada</p>
+      <h2>Feito para ser lido em voz alta.</h2>
+      <p class="leitura__apoio">
+        Além das lindas ilustrações, cada página foi escrita para ser lida em voz alta.
+        Com um texto leve, rimado e cheio de ritmo, a história convida crianças e adultos
+        a compartilharem a leitura, tornando cada página um momento de conexão,
+        imaginação e diversão em família.
+      </p>
+    </div>
+
+    <figure class="leitura__video reveal">
+      <video
+        data-video-preguicoso
+        poster="/assets/images/aquarelada-leitura-poster.webp"
+        preload="none"
+        muted
+        loop
+        playsinline
+        autoplay
+        disablepictureinpicture
+        aria-label="Mãos folheando as páginas ilustradas do livro Um Dia Diferente, Como Era Antigamente!">
+        <source data-src="/assets/video/aquarelada-leitura-compartilhada.mp4" type="video/mp4">
+      </video>
+    </figure>
   </div>
 </section>
 
@@ -320,10 +364,10 @@
         <p class="chapeu">O convite</p>
         <h2>Uma brincadeira já pode mudar o dia.</h2>
         <p class="convite__texto">
-          Não é sobre ter mais tempo. É sobre o que cabe dentro do tempo que já existe.
-          Alguns minutos de presença real podem transformar um momento comum em uma
-          lembrança que ficará para sempre. É esse tipo de experiência que o livro
-          convida cada família a viver.
+          A rotina é corrida, o cansaço existe e as telas fazem parte da vida moderna.
+          Este livro não pede uma infância perfeita. Ele oferece um convite possível:
+          alguns minutos de presença real, uma leitura compartilhada e uma brincadeira
+          simples que pode virar memória.
         </p>
       </div>
 
@@ -372,8 +416,9 @@
           Não é sobre ter <strong>mais tempo</strong>. É sobre o que cabe dentro do tempo que já existe.
         </blockquote>
         <footer>
-          Alguns minutos de presença real valem mais do que uma tarde inteira dividida
-          com a tela. É disso que a história trata, do começo ao fim.
+          Alguns minutos de presença real podem transformar um momento comum em uma
+          lembrança que ficará para sempre. É esse tipo de experiência que o livro
+          convida cada família a viver.
         </footer>
       </div>
     </div>

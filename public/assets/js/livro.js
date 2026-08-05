@@ -151,6 +151,54 @@
     atualizarControles();
   }
 
+  /* ---- vídeo decorativo, carregado só quando faz falta ----
+     O <source> nasce com data-src, então o navegador não baixa nada no
+     carregamento inicial. O arquivo só entra quando a seção chega perto
+     da tela, e o vídeo pausa quando sai — não adianta gastar bateria
+     rodando um loop que ninguém está vendo. */
+  var videos = document.querySelectorAll("[data-video-preguicoso]");
+  if (videos.length) {
+    var carregar = function (video) {
+      if (video.dataset.carregado) return;
+      video.dataset.carregado = "1";
+      var fontes = video.querySelectorAll("source[data-src]");
+      for (var f = 0; f < fontes.length; f++) {
+        fontes[f].src = fontes[f].dataset.src;
+        fontes[f].removeAttribute("data-src");
+      }
+      video.load();
+    };
+
+    var tocar = function (video) {
+      var tentativa = video.play();
+      /* autoplay bloqueado não é erro nosso: o poster continua no lugar */
+      if (tentativa && tentativa.catch) tentativa.catch(function () {});
+    };
+
+    if ("IntersectionObserver" in window) {
+      var observadorVideo = new IntersectionObserver(
+        function (entradas) {
+          entradas.forEach(function (entrada) {
+            var video = entrada.target;
+            if (entrada.isIntersecting) {
+              carregar(video);
+              tocar(video);
+            } else if (!video.paused) {
+              video.pause();
+            }
+          });
+        },
+        { rootMargin: "200px 0px" }
+      );
+      for (var v = 0; v < videos.length; v++) observadorVideo.observe(videos[v]);
+    } else {
+      for (var w = 0; w < videos.length; w++) {
+        carregar(videos[w]);
+        tocar(videos[w]);
+      }
+    }
+  }
+
   /* ---- revelação por scroll ----
      Um único tipo de entrada em toda a página: subir 18px com fade. */
   var alvos = document.querySelectorAll(".reveal");

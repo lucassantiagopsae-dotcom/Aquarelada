@@ -17,7 +17,9 @@ const types = {
   ".jpeg": "image/jpeg",
   ".svg": "image/svg+xml",
   ".pdf": "application/pdf",
-  ".xml": "application/xml; charset=utf-8"
+  ".xml": "application/xml; charset=utf-8",
+  ".mp4": "video/mp4",
+  ".webm": "video/webm"
 };
 
 function mapUrl(url) {

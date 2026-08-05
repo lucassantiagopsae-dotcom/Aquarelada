@@ -669,7 +669,11 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
   transition: rotate var(--transicao);
 }
 .historia__linha--inversa .historia__foto { rotate: 1.6deg; }
-.historia__foto:hover { rotate: 0deg; }
+/* só onde existe mouse de verdade: no toque o :hover fica grudado depois
+   do tap e ainda força um repaint do bloco recortado */
+@media (hover: hover) {
+  .historia__foto:hover { rotate: 0deg; }
+}
 /* 1.6:1 é a proporção das ilustrações do livro — abaixo disso o recorte
    central come personagens que estão nas bordas da cena */
 .historia__foto img { border-radius: 8px 8px 2px 2px; aspect-ratio: 1.6 / 1; object-fit: cover; }
@@ -723,7 +727,9 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
   box-shadow: var(--sombra-papel);
   transition: rotate var(--transicao);
 }
-.convite__foto:hover { rotate: 0deg; }
+@media (hover: hover) {
+  .convite__foto:hover { rotate: 0deg; }
+}
 .convite__foto img { border-radius: 10px; }
 .convite__foto figcaption {
   font-size: 15px;
@@ -902,6 +908,51 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
 }
 
 /* =========================================================
+   S3b — leitura compartilhada (vídeo em loop)
+   ========================================================= */
+
+.leitura {
+  background: var(--marfim);
+  padding-block: var(--e7);
+}
+
+.leitura__texto {
+  max-width: 62ch;
+}
+
+.leitura h2 {
+  font-size: clamp(1.7rem, 3.4vw, 2.8rem);
+  line-height: 1.06;
+  max-width: 20ch;
+}
+
+.leitura__apoio {
+  margin-top: var(--e3);
+  color: var(--tinta-suave);
+}
+
+/* moldura de foto de álbum, como o resto da página, mas sem a fita:
+   aqui o movimento do vídeo já é o elemento que chama atenção */
+.leitura__video {
+  margin: var(--e5) 0 0;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: var(--areia);
+  box-shadow: var(--sombra-papel);
+  line-height: 0;
+}
+
+/* a proporção fica reservada antes do vídeo carregar, senão a página
+   pula quando ele entra */
+.leitura__video video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1152 / 732;
+  object-fit: cover;
+}
+
+/* =========================================================
    S5 — scroll-horizontal das brincadeiras
    ========================================================= */
 
@@ -1021,7 +1072,10 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
 .brincadeira:nth-child(even)::before { rotate: 4deg; }
 .brincadeira:nth-child(3n)::before { rotate: -6deg; width: 88px; }
 
-.brincadeira:hover { transform: translateY(-6px); rotate: 0deg; }
+/* no toque, o card ficava endireitado depois do swipe e não voltava */
+@media (hover: hover) {
+  .brincadeira:hover { transform: translateY(-6px); rotate: 0deg; }
+}
 
 .brincadeira img {
   width: 100%;
@@ -1231,7 +1285,7 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
   padding: var(--e6);
 }
 .celula--principal img {
-  width: min(320px, 78%);
+  width: min(400px, 92%);
   margin-bottom: var(--e2);
   filter: drop-shadow(0 18px 20px rgba(27, 38, 53, 0.18));
 }
@@ -1314,7 +1368,7 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
 
 .afeto__capa {
   display: block;
-  width: min(420px, 78%);
+  width: min(680px, 100%);
   margin: 0 auto var(--e5);
   filter: drop-shadow(0 24px 30px rgba(27, 38, 53, 0.24));
 }
@@ -1558,10 +1612,17 @@ html.js .reveal.visivel { opacity: 1; transform: none; }
   .fechar h2 { max-width: 100%; }
   .hero__livro { width: min(370px, 90vw); }
 
-  .convite { padding-block: var(--e7) var(--e6); }
-  .respiro, .continua, .afeto { padding-bottom: var(--e6); }
-  .trilha, .bonus { padding-block: var(--e6); }
-  .fechar { padding-block: var(--e7); }
+  /* No celular a escala de respiro do desktop vira buraco: o vão entre duas
+     dobras é a soma dos dois paddings, então --e8 embaixo + --e7 em cima
+     dava 224px, quase um terço da tela só de vazio. Aqui o intervalo entre
+     seções fica entre 96px e 128px, que separa sem desconectar. */
+  .historia { padding-block: var(--e6); }
+  .leitura { padding-block: var(--e5); }
+  .trilha, .bonus { padding-block: var(--e5); }
+  .convite { padding-block: var(--e6) var(--e5); }
+  .afeto { padding-block: var(--e6) var(--e5); }
+  .respiro, .continua { padding-bottom: var(--e5); }
+  .fechar { padding-block: var(--e6); }
 
   .passos { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--e4) var(--e3); }
   .passo__num {
