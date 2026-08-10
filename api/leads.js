@@ -88,9 +88,11 @@ function replyCopy(key) {
       body: "Obrigado por se cadastrar. Guardamos seu acesso para que voce possa voltar ao material, escolher uma brincadeira e comecar quando quiser."
     },
     "formulario-manual": {
-      subject: "Seu acesso ao Super Manual",
-      title: "Seu Super Manual esta liberado.",
-      body: "Agora e so voltar ao manual quando quiser e escolher uma brincadeira para comecar. Cinco minutos tambem podem virar memoria."
+      subject: "Seu Super Manual de Brincadeiras ja esta liberado",
+      title: "Seu Super Manual ja esta liberado.",
+      body: "Voce chegou ate o Super Manual de Brincadeiras da Aquarelada, o companheiro perfeito do livro Um Dia Diferente, Como Era Antigamente!, com brincadeiras, cantigas, adivinhas e trava-linguas pra transformar qualquer momento do dia em memoria de verdade. Seu acesso ja esta liberado, sem senha e sem complicacao. E so entrar e escolher uma brincadeira pra comecar.",
+      tip: "Dica: assim que abrir, da pra instalar como um aplicativo no seu celular (procure \"Adicionar a tela inicial\" ou \"Instalar app\" no menu do navegador). Assim ele fica sempre a mao, sem precisar procurar de novo.",
+      closing: "Volte sempre que quiser. Cinco minutos tambem podem virar memoria."
     }
   };
   return copies[key] || copies["formulario-manual"];
@@ -115,11 +117,15 @@ function leadNotifyHtml(payload, key, tags) {
 }
 
 function replyHtml(payload, copy, baseUrl) {
+  const tipBlock = copy.tip ? `<p>${escapeHtml(copy.tip)}</p>` : "";
+  const closingBlock = copy.closing ? `<p>${escapeHtml(copy.closing)}</p>` : "";
   return `
     <h2>${escapeHtml(copy.title)}</h2>
     <p>Oi, ${escapeHtml(payload.name || "tudo bem")}.</p>
     <p>${escapeHtml(copy.body)}</p>
     <p><a href="${escapeHtml(baseUrl)}/supermanual/acesso">Acessar o Super Manual</a></p>
+    ${tipBlock}
+    ${closingBlock}
     <p>Com carinho,<br>Aquarelada Editora</p>
   `;
 }
