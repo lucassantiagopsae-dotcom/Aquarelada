@@ -3,6 +3,9 @@
 ## Rotas
 
 - `/` -> `index.html`
+- `/livro/` -> `livro/index.html`
+- `/livro-escolas/` -> `livro-escolas/index.html`
+- `/livro-nostalgia/` -> `livro-nostalgia/index.html`
 - `/supermanual/` -> `supermanual/index.html`
 - `/acesso/` -> `acesso/index.html`
 - `/brincadeiras/` -> `brincadeiras/index.html`

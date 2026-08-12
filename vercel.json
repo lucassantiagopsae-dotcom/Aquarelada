@@ -64,6 +64,10 @@
       "destination": "/livro-escolas/index.html"
     },
     {
+      "source": "/livro-nostalgia",
+      "destination": "/livro-nostalgia/index.html"
+    },
+    {
       "source": "/supermanual",
       "destination": "/supermanual/index.html"
     },
