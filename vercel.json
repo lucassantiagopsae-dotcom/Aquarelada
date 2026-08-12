@@ -60,6 +60,10 @@
       "destination": "/livro/index.html"
     },
     {
+      "source": "/livro-escolas",
+      "destination": "/livro-escolas/index.html"
+    },
+    {
       "source": "/supermanual",
       "destination": "/supermanual/index.html"
     },
