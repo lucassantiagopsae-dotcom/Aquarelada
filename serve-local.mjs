@@ -4,7 +4,8 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 // ancorado no próprio arquivo: `npm run dev` funciona de qualquer diretório
-const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "public");
+const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)));
+const root = path.join(projectRoot, "public");
 const types = {
   ".html": "text/html; charset=utf-8",
   ".js": "text/javascript; charset=utf-8",
@@ -21,6 +22,72 @@ const types = {
   ".mp4": "video/mp4",
   ".webm": "video/webm"
 };
+
+function loadLocalEnv() {
+  const envPath = path.join(projectRoot, ".env.local");
+  if (!fs.existsSync(envPath)) return;
+
+  const lines = fs.readFileSync(envPath, "utf8").split(/\r?\n/);
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith("#")) continue;
+    const separator = trimmed.indexOf("=");
+    if (separator === -1) continue;
+
+    const key = trimmed.slice(0, separator).trim();
+    let value = trimmed.slice(separator + 1).trim();
+    if (!key || process.env[key] != null) continue;
+    if (
+      (value.startsWith('"') && value.endsWith('"')) ||
+      (value.startsWith("'") && value.endsWith("'"))
+    ) {
+      value = value.slice(1, -1);
+    }
+    process.env[key] = value;
+  }
+}
+
+function sendJson(response, payload, status = 200) {
+  response.writeHead(status, { "Content-Type": "application/json; charset=utf-8" });
+  response.end(JSON.stringify(payload));
+}
+
+async function readJsonBody(request) {
+  const chunks = [];
+  for await (const chunk of request) chunks.push(chunk);
+  const raw = Buffer.concat(chunks).toString("utf8");
+  return raw ? JSON.parse(raw) : {};
+}
+
+async function handleLocalMetaCapi(request, response) {
+  if (request.method !== "POST") {
+    sendJson(response, { error: "Metodo nao permitido" }, 405);
+    return;
+  }
+
+  try {
+    const body = await readJsonBody(request);
+    const { POST } = await import("./api/meta-capi.js");
+    const apiRequest = new Request("http://127.0.0.1:4177/api/meta-capi", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "User-Agent": request.headers["user-agent"] || "",
+        Cookie: request.headers.cookie || ""
+      },
+      body: JSON.stringify(body)
+    });
+    const apiResponse = await POST(apiRequest);
+    const text = await apiResponse.text();
+    response.writeHead(apiResponse.status, { "Content-Type": "application/json; charset=utf-8" });
+    response.end(text);
+  } catch (error) {
+    sendJson(response, { error: "Erro local em /api/meta-capi" }, 500);
+    console.error("Erro local em /api/meta-capi:", error && error.message);
+  }
+}
+
+loadLocalEnv();
 
 function mapUrl(url) {
   const parsed = new URL(url, "http://localhost");
@@ -46,10 +113,14 @@ function mapUrl(url) {
 }
 
 http.createServer((request, response) => {
+  if (request.url?.startsWith("/api/meta-capi")) {
+    handleLocalMetaCapi(request, response);
+    return;
+  }
+
   if (request.url?.startsWith("/api/leads") && request.method === "POST") {
     request.resume();
-    response.writeHead(200, { "Content-Type": "application/json; charset=utf-8" });
-    response.end(JSON.stringify({ ok: true, local: true }));
+    sendJson(response, { ok: true, local: true });
     return;
   }
 

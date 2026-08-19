@@ -1,3 +1,5 @@
+import { sendMetaEvent } from "../lib/meta-capi.js";
+
 // API para capturar leads dos formularios, armazenar no Upstash Redis
 // e disparar o e-mail automatico de acesso ao Super Manual via Resend
 
@@ -203,6 +205,54 @@ async function dispatchEmails(lead, request) {
   return result;
 }
 
+function leadSourceUrl(lead, request) {
+  const attribution = lead.attribution || {};
+  const landingPage = sanitize(attribution.landingPage);
+  if (landingPage) return landingPage;
+
+  const protocol = request.headers.get("x-forwarded-proto") || "https";
+  const host = request.headers.get("host");
+  const path = sanitize(attribution.path) || "/";
+  if (!host) return "";
+  return `${protocol}://${host}${path.startsWith("/") ? path : `/${path}`}`;
+}
+
+function leadContentName(key) {
+  return key === "pagina-editora"
+    ? "Aquarelada Editora"
+    : "Aquarelada - Super Manual de Brincadeiras";
+}
+
+function publicMetaResult(result) {
+  return {
+    ok: Boolean(result && result.ok),
+    skipped: Boolean(result && result.skipped),
+    reason: result && result.reason,
+    event_id: result && result.eventId
+  };
+}
+
+async function dispatchMetaLead(lead, request) {
+  try {
+    const key = sourceKey(lead);
+    return await sendMetaEvent({
+      request,
+      eventName: "Lead",
+      eventId: lead.id,
+      eventSourceUrl: leadSourceUrl(lead, request),
+      email: lead.email,
+      phone: lead.whatsapp,
+      customData: {
+        content_name: leadContentName(key),
+        lead_form: lead.form,
+        source: key
+      }
+    });
+  } catch (error) {
+    console.error("Erro ao enviar Lead para Meta CAPI:", error && error.message);
+    return { ok: false, error: "meta-capi-failed", eventId: lead.id };
+  }
+}
 export async function POST(request) {
   try {
     const body = await request.json();
@@ -253,13 +303,23 @@ export async function POST(request) {
         console.error("Erro ao armazenar no Redis:", redisError);
       }
     } else {
-      console.log("Upstash Redis nao configurado. Lead recebido (nao armazenado):", lead);
+      console.log("Upstash Redis nao configurado. Lead recebido (nao armazenado):", {
+        leadId: lead.id,
+        form: lead.form,
+        source: sourceKey(lead)
+      });
     }
 
     const emailResult = await dispatchEmails(lead, request);
+    const metaResult = await dispatchMetaLead(lead, request);
 
     return new Response(
-      JSON.stringify({ success: true, leadId: lead.id, email: emailResult }),
+      JSON.stringify({
+        success: true,
+        leadId: lead.id,
+        email: emailResult,
+        meta: publicMetaResult(metaResult)
+      }),
       { status: 200, headers: { "Content-Type": "application/json" } }
     );
   } catch (error) {

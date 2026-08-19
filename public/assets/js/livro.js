@@ -5,6 +5,52 @@
 (function () {
   "use strict";
 
+  function metaText(value) {
+    return String(value || "").replace(/\s+/g, " ").trim();
+  }
+
+  function metaEventId(prefix) {
+    if (window.crypto && typeof window.crypto.randomUUID === "function") {
+      return prefix + "-" + window.crypto.randomUUID();
+    }
+    return prefix + "-" + Date.now() + "-" + Math.random().toString(36).slice(2, 10);
+  }
+
+  function sendMetaCapi(payload) {
+    var body = JSON.stringify(payload);
+    if (navigator.sendBeacon && window.Blob) {
+      var blob = new Blob([body], { type: "application/json" });
+      if (navigator.sendBeacon("/api/meta-capi", blob)) return;
+    }
+    if (!window.fetch) return;
+    window.fetch("/api/meta-capi", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: body,
+      keepalive: true,
+      credentials: "same-origin"
+    }).catch(function () {});
+  }
+
+  function initMetaCapiClicks() {
+    document.addEventListener("click", function (evento) {
+      if (!evento.target || !evento.target.closest) return;
+      var link = evento.target.closest('[data-meta-capi-event="ClickAmazon"]');
+      if (!link) return;
+      sendMetaCapi({
+        event_name: link.getAttribute("data-meta-capi-event") || "ClickAmazon",
+        event_id: metaEventId("click-amazon"),
+        event_source_url: window.location.href,
+        page_path: window.location.pathname,
+        target_url: link.href,
+        button_label: metaText(link.getAttribute("data-meta-button-label") || link.textContent).slice(0, 120),
+        content_name: link.getAttribute("data-meta-content-name") || document.title
+      });
+    }, true);
+  }
+
+  initMetaCapiClicks();
+
   /* ---- CTA flutuante dependente de estado ----
      Aparece depois que o hero sai de cena; some de novo perto do
      fechamento, onde a página já tem um CTA grande cuidando disso. */
