@@ -5,7 +5,7 @@ window.SUPERMANUAL_GENERATED = {
     "Em algum momento, quase todo mundo esquece disso. Mas o brincar não desaparece — ele só espera um convite.",
     "Este manual é o convite!",
     "E, para muitas famílias, tudo começou nas páginas de Um Dia Diferente, Como Era Antigamente!, um livro infantil ilustrado que resgata lembranças, brincadeiras e momentos simples que atravessam gerações. Se você já leu a história, agora é hora de viver algumas dessas experiências. Mas, se você ainda não conhece o livro, vale a pena descobrir essa jornada também.",
-    "O Super Manual de Brincadeiras conta com o apoio do projeto Na Rua Sem Wi-Fi, uma iniciativa que incentiva crianças, famílias e comunidades a redescobrir a alegria das brincadeiras e dos encontros que criam memórias.",
+    "O Super Manual de Brincadeiras tem como embaixadores os projetos Mulek de Rua e o Na Rua Sem Wi-Fi, iniciativas que incentivam crianças, famílias e comunidades a redescobrir a alegria das brincadeiras e dos encontros que criam memórias.",
     "Então escolha ao menos uma brincadeira. Pode ser uma que você nunca fez ou aquela que gostaria de relembrar.",
     "Chame alguém, comece!",
     "Porque grandes lembranças quase sempre nascem de momentos simples.",
