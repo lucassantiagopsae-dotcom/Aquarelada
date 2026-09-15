@@ -56,6 +56,10 @@
   ],
   "rewrites": [
     {
+      "source": "/livro-v2",
+      "destination": "/livro-v2/index.html"
+    },
+    {
       "source": "/livro",
       "destination": "/livro/index.html"
     },

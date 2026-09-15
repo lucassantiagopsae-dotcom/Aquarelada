@@ -1,0 +1,129 @@
+/* Test variant: keep the original page and shared styles independent. */
+.livro-v2 {
+  --marfim: #ffffff;
+  --areia: #edf5f0;
+  --tinta: #203c3f;
+  --tinta-2: #234a4b;
+  --tinta-suave: #465e60;
+  --r-sm: 8px;
+  --r-lg: 8px;
+  background: #fff;
+  letter-spacing: 0;
+}
+.livro-v2 *, .livro-v2 *::before, .livro-v2 *::after { letter-spacing: 0; }
+.livro-v2::before, .livro-v2::after { display: none; }
+.livro-v2 :is(h1,h2,h3) { paint-order: stroke fill; -webkit-text-stroke: .5px currentColor; }
+.livro-v2 h2 { font-size: 40px; line-height: 1.16; }
+.livro-v2 h3 { font-size: 27px; line-height: 1.25; -webkit-text-stroke-width: .25px; }
+.livro-v2 .chapeu { font-size: 13px; }
+.livro-v2 .btn { animation: none; }
+.livro-v2 .cta-flutuante { display: none; }
+.livro-v2 .btn svg { width: 20px; height: 20px; flex-shrink: 0; }
+.livro-v2 .confete { display: none; }
+.livro-v2 .abertura-v2 { padding: 0; background: #eaf5f4; overflow: hidden; }
+.abertura-v2__marca { height: 60px; display: flex; align-items: center; justify-content: center; }
+.abertura-v2__marca img { width: 176px; height: 44px; object-fit: contain; filter: brightness(0) saturate(100%); opacity: .8; }
+.abertura-v2__cena { position: relative; height: 548px; }
+.abertura-v2__titulo { position: absolute; z-index: 2; top: 4px; left: 24px; right: 24px; text-align: center; }
+.livro-v2 .abertura-v2 h1 { font-size: 44px; line-height: 1.06; max-width: none; margin: 0; color: var(--tinta); }
+.livro-v2 .abertura-v2 h1 em { color: var(--coral-forte); font-style: normal; }
+.abertura-v2__titulo p { margin-top: 12px; font-size: 17px; color: var(--tinta); }
+.abertura-v2__video { position: absolute; inset: 142px 0 0; width: 100%; height: calc(100% - 142px); object-fit: contain; }
+.abertura-v2__acoes { display: flex; justify-content: center; align-items: center; gap: 32px; padding: 12px 24px 24px; }
+.abertura-v2__acoes .btn { min-height: 54px; padding: 14px 28px; font-size: 17px; }
+.abertura-v2__conhecer { display: inline-flex; align-items: center; gap: 10px; font-size: 16px; font-weight: 800; }
+.abertura-v2__conhecer svg { width: 18px; height: 18px; }
+.v2-media-toggle, .v2-motion-toggle {
+  display: inline-grid; place-items: center; width: 46px; height: 46px;
+  padding: 0; border: 1px solid #234a4b; border-radius: 50%;
+  color: #203c3f; background: #fff; cursor: pointer;
+}
+.v2-media-toggle { position: absolute; z-index: 3; right: 20px; bottom: 16px; }
+.v2-media-toggle[hidden], .v2-motion-toggle[hidden] { display: none; }
+.v2-media-toggle:hover, .v2-motion-toggle:hover { background: #f9e6a3; }
+.v2-media-toggle svg, .v2-motion-toggle svg { width: 20px; height: 20px; }
+.livro-v2 .historia { background: #234a4b; padding: 64px 0; scroll-margin-top: 20px; }
+.livro-v2 .historia__bloco { padding: 0; background: none; box-shadow: none; border-radius: 0; clip-path: none; overflow: visible; }
+.livro-v2 .historia__bloco::before, .livro-v2 .historia__bloco::after { display: none; }
+.livro-v2 .historia h2 { font-size: 36px; }
+.livro-v2 .historia__linha p { color: #eff6f1; }
+.livro-v2 .historia__bloco .chapeu { color: #f9d87e; }
+.livro-v2 .leitura { padding: 64px 0; }
+.livro-v2 .leitura__video { position: relative; border-radius: 0; box-shadow: none; max-width: 900px; margin-inline: auto; }
+.livro-v2 .leitura__texto { max-width: 780px; margin-inline: auto; text-align: center; }
+.livro-v2 .leitura h2 { max-width: none; }
+.capa-v2 { padding: 56px 0 24px; background: #eaf5f4; }
+.capa-v2__texto { text-align: center; max-width: 740px; margin: auto; }
+.capa-v2__texto .chapeu { margin-bottom: 12px; }
+.capa-v2__texto > p:last-child { margin-top: 16px; color: var(--tinta-suave); }
+.capa-v2__filme { position: relative; margin: 12px auto 0; max-width: 1000px; }
+.capa-v2__filme video { display: block; width: 100%; height: auto; aspect-ratio: 16/9; object-fit: contain; }
+.livro-v2 .trilha { padding: 64px 0; background: #fff; }
+.livro-v2 .trilha__frase { font-size: 25px; flex: 1 1 450px; }
+.livro-v2 .trilha__intro { gap: 16px; align-items: center; }
+.livro-v2 .brincadeira { overflow: visible; padding: 0 0 8px; background: none; box-shadow: none; border-radius: 0; }
+.livro-v2 .brincadeira img { animation: brincar-v2 5s ease-in-out infinite; transform-origin: center 80%; }
+.livro-v2 .brincadeira:nth-child(3n+2) img { animation-name: deslizar-v2; animation-delay: -.8s; }
+.livro-v2 .brincadeira:nth-child(3n+3) img { animation-delay: -1.8s; }
+.livro-v2 .brincadeira figcaption { position: relative; z-index: 1; background: none; font-size: 17px; padding: 16px 0 0; }
+.livro-v2 .trilha:not(.v2-em-cena) .brincadeira img,
+.livro-v2.movimento-pausado .brincadeira img { animation-play-state: paused; }
+@keyframes brincar-v2 { 0%,100% { transform: rotate(-1deg) translateY(0); } 50% { transform: rotate(1deg) translateY(-5px); } }
+@keyframes deslizar-v2 { 0%,100% { transform: translateX(-4px); } 50% { transform: translateX(4px); } }
+.livro-v2 .bonus { padding: 64px 0; background: #f5f8ef; }
+.livro-v2 .continua { padding: 64px 0; background: #234a4b; }
+.livro-v2 .continua__bloco { padding: 0; border-radius: 0; background: none; box-shadow: none; }
+.livro-v2 .continua__bloco::before, .livro-v2 .continua__bloco::after { display: none; }
+.livro-v2 .afeto { background: #f9e6a3; padding: 64px 0; border-radius: 0; box-shadow: none; }
+.livro-v2 .afeto :is(h2,.afeto__texto,.afeto__frase) { color: var(--tinta); }
+.livro-v2 .afeto::before, .livro-v2 .afeto::after { display: none; }
+.livro-v2 .afeto__frase { font-size: 24px; }
+.livro-v2 .convite { padding: 64px 0; background: #fff; }
+.livro-v2 .respiro { background: #edf5f0; padding: 64px 0; }
+.livro-v2 .respiro__bloco { border-radius: 0; box-shadow: none; background: none; color: var(--tinta); padding: 0; }
+.livro-v2 .respiro__bloco::before { display: none; }
+.livro-v2 .respiro__bloco blockquote { color: var(--tinta); font-size: 36px; }
+.livro-v2 .respiro__bloco blockquote strong { color: var(--coral-forte); }
+.livro-v2 .respiro__bloco footer { color: var(--tinta-suave); }
+.livro-v2 .fechar { background: #234a4b; padding: 64px 0; }
+.livro-v2 .fechar::before { display: none; }
+.livro-v2 .fechar h2 { font-size: 40px; }
+.livro-v2 .rodape { background: #fff; }
+@media (min-width: 1000px) and (max-height: 800px) {
+  .abertura-v2__cena { height: 440px; }
+  .abertura-v2__marca { height: 48px; }
+  .abertura-v2__marca img { height: 36px; }
+  .livro-v2 .abertura-v2 h1 { font-size: 40px; }
+  .abertura-v2__video { inset-block-start: 128px; height: calc(100% - 128px); }
+}
+@media (max-width: 700px) {
+  .livro-v2 { font-size: 17px; --largura: calc(100% - 40px); }
+  .abertura-v2__marca { height: 54px; }
+  .abertura-v2__marca img { width: 152px; height: 40px; }
+  .abertura-v2__cena { height: 422px; }
+  .abertura-v2__titulo { left: 20px; right: 20px; }
+  .livro-v2 .abertura-v2 h1 { font-size: 34px; line-height: 1.1; }
+  .abertura-v2__titulo p { font-size: 16px; max-width: 290px; margin: 14px auto 0; line-height: 1.5; }
+  .abertura-v2__video { inset-block-start: 180px; height: 242px; }
+  .abertura-v2__acoes { flex-direction: column; gap: 16px; padding: 10px 20px 28px; }
+  .abertura-v2__acoes .btn { width: 100%; max-width: 360px; min-height: 54px; }
+  .abertura-v2__conhecer { font-size: 15px; }
+  .v2-media-toggle { right: 12px; bottom: 8px; }
+  .livro-v2 h2, .livro-v2 .historia h2, .livro-v2 .fechar h2 { font-size: 30px; }
+  .livro-v2 h3 { font-size: 24px; }
+  .livro-v2 :is(.historia,.leitura,.capa-v2,.trilha,.bonus,.continua,.afeto,.convite,.respiro,.fechar) { padding-block: 48px; }
+  .livro-v2 .historia__linha { gap: 24px; }
+  .livro-v2 .leitura__video { margin-top: 28px; }
+  .livro-v2 .trilha__frase { font-size: 23px; flex-basis: 100%; }
+  .livro-v2 .trilha__controles { display: flex; margin-left: auto; }
+  .livro-v2 .respiro__bloco blockquote { font-size: 28px; }
+  .livro-v2 .continua__texto { max-width: none; }
+}
+@media (max-width: 375px) {
+  .livro-v2 .abertura-v2 h1 { font-size: 30px; }
+  .abertura-v2__cena { height: 394px; }
+  .abertura-v2__video { inset-block-start: 164px; height: 230px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .livro-v2 .brincadeira img { animation: none; }
+}
