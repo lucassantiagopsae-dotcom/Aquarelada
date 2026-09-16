@@ -60,10 +60,11 @@
 .livro-v2 .trilha { padding: 64px 0; background: #eaf5f4; position: relative; }
 .livro-v2 .trilha__frase { font-size: 25px; flex: 1 1 450px; }
 .livro-v2 .trilha__intro { gap: 16px; align-items: center; }
-.livro-v2 .brincadeira img { animation: brincar-v2 5s ease-in-out infinite; transform-origin: center 80%; }
+.livro-v2 .brincadeira { padding: 10px 10px 0; }
+.livro-v2 .brincadeira img { animation: brincar-v2 5s ease-in-out infinite; transform-origin: center 80%; border-radius: 4px; }
 .livro-v2 .brincadeira:nth-child(3n+2) img { animation-name: deslizar-v2; animation-delay: -.8s; }
 .livro-v2 .brincadeira:nth-child(3n+3) img { animation-delay: -1.8s; }
-.livro-v2 .brincadeira figcaption { position: relative; z-index: 1; background: none; font-size: 17px; padding: 16px 0 0; }
+.livro-v2 .brincadeira figcaption { position: relative; z-index: 1; background: none; font-size: 17px; padding: 10px 2px 14px; }
 .livro-v2 .trilha:not(.v2-em-cena) .brincadeira img,
 .livro-v2.movimento-pausado .brincadeira img { animation-play-state: paused; }
 @keyframes brincar-v2 { 0%,100% { transform: rotate(-1deg) translateY(0); } 50% { transform: rotate(1deg) translateY(-5px); } }
