@@ -17,7 +17,6 @@
 .livro-v2 h3 { font-size: 27px; line-height: 1.25; -webkit-text-stroke-width: .25px; }
 .livro-v2 .chapeu { font-size: 13px; }
 .livro-v2 .btn { animation: none; }
-.livro-v2 .cta-flutuante { display: none; }
 .livro-v2 .btn svg { width: 20px; height: 20px; flex-shrink: 0; }
 .livro-v2 .confete { display: none; }
 .livro-v2 .abertura-v2 { padding: 0; background: #eaf5f4; overflow: hidden; }
@@ -42,7 +41,7 @@
 .v2-media-toggle[hidden], .v2-motion-toggle[hidden] { display: none; }
 .v2-media-toggle:hover, .v2-motion-toggle:hover { background: #f9e6a3; }
 .v2-media-toggle svg, .v2-motion-toggle svg { width: 20px; height: 20px; }
-.livro-v2 .historia { background: #234a4b; padding: 64px 0; scroll-margin-top: 20px; }
+.livro-v2 .historia { background: #234a4b; padding: 64px 0; scroll-margin-top: 20px; position: relative; overflow: hidden; }
 .livro-v2 .historia__bloco { padding: 0; background: none; box-shadow: none; border-radius: 0; clip-path: none; overflow: visible; }
 .livro-v2 .historia__bloco::before, .livro-v2 .historia__bloco::after { display: none; }
 .livro-v2 .historia h2 { font-size: 36px; }
@@ -58,7 +57,7 @@
 .capa-v2__texto > p:last-child { margin-top: 16px; color: var(--tinta-suave); }
 .capa-v2__filme { position: relative; margin: 12px auto 0; max-width: 1000px; }
 .capa-v2__filme video { display: block; width: 100%; height: auto; aspect-ratio: 16/9; object-fit: contain; }
-.livro-v2 .trilha { padding: 64px 0; background: #fff; }
+.livro-v2 .trilha { padding: 64px 0; background: #fff; position: relative; }
 .livro-v2 .trilha__frase { font-size: 25px; flex: 1 1 450px; }
 .livro-v2 .trilha__intro { gap: 16px; align-items: center; }
 .livro-v2 .brincadeira { overflow: visible; padding: 0 0 8px; background: none; box-shadow: none; border-radius: 0; }
@@ -70,8 +69,26 @@
 .livro-v2.movimento-pausado .brincadeira img { animation-play-state: paused; }
 @keyframes brincar-v2 { 0%,100% { transform: rotate(-1deg) translateY(0); } 50% { transform: rotate(1deg) translateY(-5px); } }
 @keyframes deslizar-v2 { 0%,100% { transform: translateX(-4px); } 50% { transform: translateX(4px); } }
+/* ---------- elementos decorativos animados: pião girando, pipa voando ----------
+   Puramente enfeite (aria-hidden), reforçando o tema de brincadeiras de
+   antigamente ao longo da rolagem. Nunca sobrepõem texto. */
+.livro-v2 .deco-brincar { position: absolute; z-index: 1; pointer-events: none; }
+.livro-v2 .deco-piao { width: 52px; height: auto; color: #f9d87e; animation: piao-girar-v2 2.4s linear infinite; }
+.livro-v2 .deco-pipa { width: 60px; height: auto; animation: pipa-voar-v2 6s ease-in-out infinite; }
+.livro-v2 .historia .deco-piao { top: 26px; right: 28px; }
+.livro-v2 .trilha .deco-pipa { top: 8px; left: 20px; color: #234a4b; }
+.livro-v2 .continua .deco-piao { bottom: 30px; left: 24px; color: #f9e6a3; }
+.livro-v2 .afeto .deco-pipa { top: 22px; right: 28px; color: #234a4b; }
+@keyframes piao-girar-v2 {
+  from { rotate: 0deg; }
+  to { rotate: 360deg; }
+}
+@keyframes pipa-voar-v2 {
+  0%, 100% { translate: 0 0; rotate: -5deg; }
+  50% { translate: 12px -16px; rotate: 5deg; }
+}
 .livro-v2 .bonus { padding: 64px 0; background: #f5f8ef; }
-.livro-v2 .continua { padding: 64px 0; background: #234a4b; }
+.livro-v2 .continua { padding: 64px 0; background: #234a4b; position: relative; overflow: hidden; }
 .livro-v2 .continua__bloco { padding: 0; border-radius: 0; background: none; box-shadow: none; }
 .livro-v2 .continua__bloco::before, .livro-v2 .continua__bloco::after { display: none; }
 .livro-v2 .afeto { background: #f9e6a3; padding: 64px 0; border-radius: 0; box-shadow: none; }
@@ -118,6 +135,12 @@
   .livro-v2 .trilha__controles { display: flex; margin-left: auto; }
   .livro-v2 .respiro__bloco blockquote { font-size: 28px; }
   .livro-v2 .continua__texto { max-width: none; }
+  .livro-v2 .deco-piao { width: 36px; }
+  .livro-v2 .deco-pipa { width: 42px; }
+  .livro-v2 .historia .deco-piao { top: 14px; right: 14px; }
+  .livro-v2 .trilha .deco-pipa { top: 6px; left: 12px; }
+  .livro-v2 .continua .deco-piao { bottom: 14px; left: 14px; }
+  .livro-v2 .afeto .deco-pipa { top: 14px; right: 14px; }
 }
 @media (max-width: 375px) {
   .livro-v2 .abertura-v2 h1 { font-size: 30px; }
@@ -126,4 +149,5 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .livro-v2 .brincadeira img { animation: none; }
+  .livro-v2 .deco-piao, .livro-v2 .deco-pipa { animation: none; }
 }
