@@ -32,14 +32,6 @@
 .abertura-v2__acoes .btn { min-height: 54px; padding: 14px 28px; font-size: 17px; }
 .abertura-v2__conhecer { display: inline-flex; align-items: center; gap: 10px; font-size: 16px; font-weight: 800; }
 .abertura-v2__conhecer svg { width: 18px; height: 18px; }
-.v2-motion-toggle {
-  display: inline-grid; place-items: center; width: 46px; height: 46px;
-  padding: 0; border: 1px solid #234a4b; border-radius: 50%;
-  color: #203c3f; background: #fff; cursor: pointer;
-}
-.v2-motion-toggle[hidden] { display: none; }
-.v2-motion-toggle:hover { background: #f9e6a3; }
-.v2-motion-toggle svg { width: 20px; height: 20px; }
 .livro-v2 .historia { background: #234a4b; padding: 64px 0; scroll-margin-top: 20px; position: relative; overflow: hidden; }
 .livro-v2 .historia__bloco { padding: 0; background: none; box-shadow: none; border-radius: 0; clip-path: none; overflow: visible; }
 .livro-v2 .historia__bloco::before, .livro-v2 .historia__bloco::after { display: none; }
@@ -58,8 +50,7 @@
 .livro-v2 .brincadeira:nth-child(3n+2) img { animation-name: deslizar-v2; animation-delay: -.8s; }
 .livro-v2 .brincadeira:nth-child(3n+3) img { animation-delay: -1.8s; }
 .livro-v2 .brincadeira figcaption { position: relative; z-index: 1; background: none; font-size: 17px; padding: 10px 2px 14px; }
-.livro-v2 .trilha:not(.v2-em-cena) .brincadeira img,
-.livro-v2.movimento-pausado .brincadeira img { animation-play-state: paused; }
+.livro-v2 .trilha:not(.v2-em-cena) .brincadeira img { animation-play-state: paused; }
 @keyframes brincar-v2 { 0%,100% { transform: rotate(-1deg) translateY(0); } 50% { transform: rotate(1deg) translateY(-5px); } }
 @keyframes deslizar-v2 { 0%,100% { transform: translateX(-4px); } 50% { transform: translateX(4px); } }
 /* ---------- elementos decorativos animados: pião girando, pipa voando ----------

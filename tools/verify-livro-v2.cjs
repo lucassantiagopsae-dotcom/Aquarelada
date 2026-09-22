@@ -54,11 +54,12 @@ fs.mkdirSync(output, { recursive: true });
       await page.waitForTimeout(500);
       const movement2 = await page.locator('.brincadeira img').first().evaluate(e => getComputedStyle(e).transform);
       assert.notEqual(movement1, movement2);
-      await page.locator('[data-motion-toggle]').click();
-      assert.equal(await page.locator('.brincadeira img').first().evaluate(e => getComputedStyle(e).animationPlayState), 'paused');
+      assert.equal(await page.locator('[data-motion-toggle]').count(), 0);
       for (const illustration of await page.locator('.brincadeira img').all()) {
-        await illustration.scrollIntoViewIfNeeded();
-        await illustration.evaluate(image => { image.loading = 'eager'; });
+        await illustration.evaluate(image => {
+          image.loading = 'eager';
+          image.scrollIntoView({ block: 'center', inline: 'center', behavior: 'instant' });
+        });
         await page.waitForFunction(src => {
           const image = Array.from(document.images).find(item => item.src === src);
           return image && image.complete && image.naturalWidth > 0;
@@ -93,7 +94,7 @@ fs.mkdirSync(output, { recursive: true });
       assert(await page.locator('#video-abertura').evaluate(v => v.controls));
       await page.locator('#video-abertura').evaluate(v => v.play());
       await page.waitForFunction(() => !document.getElementById('video-abertura').paused);
-      results.push({ viewport: name, width, height, duration, readingDuration, bottomSpace, measurements, videoAutoplay: 'pass', offscreenPause: 'pass', carousel: 'pass', animationPause: 'pass', motionSamples: [movement1,movement2], reducedMotion: 'pass', errors });
+      results.push({ viewport: name, width, height, duration, readingDuration, bottomSpace, measurements, videoAutoplay: 'pass', offscreenPause: 'pass', carousel: 'pass', cardMotion: 'pass', motionSamples: [movement1,movement2], reducedMotion: 'pass', errors });
       await page.close();
     }
     fs.writeFileSync(path.join(output, 'results.json'), JSON.stringify(results, null, 2));
