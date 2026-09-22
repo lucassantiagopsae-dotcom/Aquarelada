@@ -13,17 +13,8 @@
   if (window.lucide) window.lucide.createIcons();
   var states = [];
   document.querySelectorAll("[data-v2-video]").forEach(function (video) {
-    var button = document.querySelector('[data-video-toggle="' + video.id + '"]');
-    var label = button.getAttribute("aria-label").replace("Reproduzir ", "");
-    var state = { video: video, inView: false, manualPause: false, manualPlay: false };
+    var state = { video: video, inView: false, autoplayFailed: false };
     states.push(state);
-    button.hidden = false;
-    function update() {
-      var action = video.paused ? "Reproduzir " : "Pausar ";
-      button.setAttribute("aria-label", action + label);
-      button.title = action + label;
-      icon(button, video.paused ? "play" : "pause");
-    }
     function load() {
       var source = video.querySelector("source[data-src]");
       if (!source) return;
@@ -34,28 +25,19 @@
     function play() {
       load();
       var pending = video.play();
-      if (pending) pending.catch(update);
+      if (pending) pending.catch(function () {
+        state.autoplayFailed = true;
+        video.controls = true;
+      });
     }
     state.sync = function () {
-      if (state.inView && !document.hidden && !state.manualPause && (!reducedMotion.matches || state.manualPlay)) play();
-      else video.pause();
+      video.controls = reducedMotion.matches || state.autoplayFailed;
+      if (reducedMotion.matches || !state.inView || document.hidden) video.pause();
+      else if (!state.autoplayFailed) play();
     };
-    video.addEventListener("play", update);
-    video.addEventListener("pause", update);
     video.addEventListener("error", function () {
-      button.hidden = true;
+      state.autoplayFailed = true;
       video.controls = true;
-    });
-    button.addEventListener("click", function () {
-      if (video.paused) {
-        state.manualPause = false;
-        state.manualPlay = true;
-        play();
-      } else {
-        state.manualPause = true;
-        state.manualPlay = false;
-        video.pause();
-      }
     });
     if ("IntersectionObserver" in window) {
       new IntersectionObserver(function (entries) {
@@ -66,7 +48,6 @@
       state.inView = true;
       state.sync();
     }
-    update();
   });
   document.addEventListener("visibilitychange", function () { states.forEach(function (state) { state.sync(); }); });
   var motionButton = document.querySelector("[data-motion-toggle]");
@@ -87,7 +68,7 @@
   reducedMotion.addEventListener("change", function () {
     motionPaused = reducedMotion.matches;
     updateMotion();
-    states.forEach(function (state) { state.manualPlay = false; state.sync(); });
+    states.forEach(function (state) { state.sync(); });
   });
   updateMotion();
 })();
