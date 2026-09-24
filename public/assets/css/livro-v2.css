@@ -27,7 +27,7 @@
 .livro-v2 .abertura-v2 h1 { font-size: 44px; line-height: 1.06; max-width: none; margin: 0; color: var(--tinta); }
 .livro-v2 .abertura-v2 h1 em { color: var(--coral-forte); font-style: normal; }
 .abertura-v2__titulo p { margin-top: 12px; font-size: 17px; color: var(--tinta); }
-.abertura-v2__video { position: absolute; inset: 142px 0 0; width: 100%; height: calc(100% - 142px); object-fit: contain; }
+.abertura-v2__video { position: absolute; inset: 142px 0 0; width: 100%; height: calc(100% - 142px); object-fit: contain; pointer-events: none; }
 .abertura-v2__acoes { display: flex; justify-content: center; align-items: center; gap: 32px; padding: 12px 24px 24px; }
 .abertura-v2__acoes .btn { min-height: 54px; padding: 14px 28px; font-size: 17px; }
 .abertura-v2__conhecer { display: inline-flex; align-items: center; gap: 10px; font-size: 16px; font-weight: 800; }
@@ -40,6 +40,7 @@
 .livro-v2 .historia__bloco .chapeu { color: #f9d87e; }
 .livro-v2 .leitura { padding: 64px 0; background: #eaf5f4; }
 .livro-v2 .leitura__video { position: relative; border-radius: 0; box-shadow: none; max-width: 900px; margin-inline: auto; }
+.livro-v2 .leitura__video video { pointer-events: none; }
 .livro-v2 .leitura__texto { max-width: 780px; margin-inline: auto; text-align: center; }
 .livro-v2 .leitura h2 { max-width: none; }
 .livro-v2 .trilha { padding: 64px 0; background: #eaf5f4; position: relative; }

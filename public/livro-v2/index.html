@@ -72,8 +72,9 @@
       <h1 id="titulo-livro">Um Dia Diferente,<br><em>Como Era Antigamente!</em></h1>
       <p>Uma história para ler junto. Um convite para brincar.</p>
     </div>
-    <video id="video-abertura" class="abertura-v2__video" data-v2-video autoplay
-      poster="/assets/images/aquarelada-abertura-v2-poster.webp" preload="metadata" muted loop playsinline
+    <video id="video-abertura" class="abertura-v2__video" data-v2-video
+      poster="/assets/images/aquarelada-abertura-v2-poster.webp" preload="metadata" muted loop playsinline webkit-playsinline
+      disablepictureinpicture
       aria-label="Capa, contracapa e páginas ilustradas do livro Um Dia Diferente, Como Era Antigamente!">
       <source src="/assets/video/aquarelada-abertura-v2.mp4" type="video/mp4">
     </video>
@@ -157,12 +158,13 @@
 
     <figure class="leitura__video reveal">
       <video id="video-leitura"
-        data-v2-video autoplay
+        data-v2-video
         poster="/assets/images/aquarelada-leitura-v2-poster.webp"
         preload="none"
         muted
         loop
         playsinline
+        webkit-playsinline
         disablepictureinpicture
         aria-label="Mãos folheando as páginas ilustradas do livro Um Dia Diferente, Como Era Antigamente!">
         <source data-src="/assets/video/aquarelada-leitura-v2-ugc.mp4" type="video/mp4">

@@ -4,8 +4,13 @@
   if (window.lucide) window.lucide.createIcons();
   var states = [];
   document.querySelectorAll("[data-v2-video]").forEach(function (video) {
-    var state = { video: video, inView: false, autoplayFailed: false };
+    var state = { video: video, inView: false, needsGesture: false };
     states.push(state);
+    video.muted = true;
+    video.defaultMuted = true;
+    video.playsInline = true;
+    video.controls = false;
+    video.removeAttribute("controls");
     function load() {
       var source = video.querySelector("source[data-src]");
       if (!source) return;
@@ -15,20 +20,26 @@
     }
     function play() {
       load();
+      if (!video.paused) return;
       var pending = video.play();
-      if (pending) pending.catch(function () {
-        state.autoplayFailed = true;
-        video.controls = true;
+      if (pending) pending.then(function () {
+        state.needsGesture = false;
+      }).catch(function () {
+        state.needsGesture = true;
+        video.controls = false;
+        video.removeAttribute("controls");
       });
     }
     state.sync = function () {
-      video.controls = reducedMotion.matches || state.autoplayFailed;
+      video.controls = false;
+      video.removeAttribute("controls");
       if (reducedMotion.matches || !state.inView || document.hidden) video.pause();
-      else if (!state.autoplayFailed) play();
+      else play();
     };
     video.addEventListener("error", function () {
-      state.autoplayFailed = true;
-      video.controls = true;
+      state.needsGesture = true;
+      video.controls = false;
+      video.removeAttribute("controls");
     });
     if ("IntersectionObserver" in window) {
       new IntersectionObserver(function (entries) {
@@ -40,6 +51,14 @@
       state.sync();
     }
   });
+  function resumeVideosFromGesture() {
+    states.forEach(function (state) {
+      if (state.inView && !document.hidden && !reducedMotion.matches) state.sync();
+    });
+  }
+  document.addEventListener("pointerdown", resumeVideosFromGesture, { capture: true, passive: true });
+  document.addEventListener("touchstart", resumeVideosFromGesture, { capture: true, passive: true });
+  document.addEventListener("keydown", resumeVideosFromGesture, true);
   document.addEventListener("visibilitychange", function () { states.forEach(function (state) { state.sync(); }); });
   var rail = document.querySelector(".trilha");
   if ("IntersectionObserver" in window) {

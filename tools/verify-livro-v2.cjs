@@ -22,6 +22,8 @@ fs.mkdirSync(output, { recursive: true });
       await page.waitForFunction(() => document.getElementById('video-abertura').currentTime > 0);
       const duration = await page.locator('#video-abertura').evaluate(v => v.duration);
       assert(duration > 22 && duration < 23);
+      assert.equal(await page.locator('[data-v2-video][autoplay]').count(), 0);
+      assert.equal(await page.locator('#video-abertura').evaluate(v => v.controls), false);
       assert.equal(await page.locator('[data-video-toggle]').count(), 0);
       assert.equal(await page.locator('.capa-v2').count(), 0);
       assert.equal(await page.locator('.abertura-v2__conhecer').innerText(), 'Conheça o livro');
@@ -91,12 +93,31 @@ fs.mkdirSync(output, { recursive: true });
       await page.emulateMedia({ reducedMotion: 'reduce' });
       await page.reload({ waitUntil: 'networkidle' });
       assert(await page.locator('#video-abertura').evaluate(v => v.paused));
-      assert(await page.locator('#video-abertura').evaluate(v => v.controls));
+      assert.equal(await page.locator('#video-abertura').evaluate(v => v.controls), false);
       await page.locator('#video-abertura').evaluate(v => v.play());
       await page.waitForFunction(() => !document.getElementById('video-abertura').paused);
       results.push({ viewport: name, width, height, duration, readingDuration, bottomSpace, measurements, videoAutoplay: 'pass', offscreenPause: 'pass', carousel: 'pass', cardMotion: 'pass', motionSamples: [movement1,movement2], reducedMotion: 'pass', errors });
       await page.close();
     }
+    console.log('Checking blocked autoplay fallback');
+    const blockedPage = await browser.newPage({ viewport: { width: 390, height: 844 } });
+    await blockedPage.addInitScript(() => {
+      const nativePlay = HTMLMediaElement.prototype.play;
+      window.__allowVideoPlayback = false;
+      HTMLMediaElement.prototype.play = function () {
+        if (!window.__allowVideoPlayback) return Promise.reject(new DOMException('Autoplay blocked', 'NotAllowedError'));
+        return nativePlay.call(this);
+      };
+    });
+    await blockedPage.route('**/*facebook*', route => route.abort());
+    await blockedPage.goto('http://127.0.0.1:4177/livro-v2/', { waitUntil: 'networkidle' });
+    assert.equal(await blockedPage.locator('#video-abertura').evaluate(v => v.controls), false);
+    assert.equal(await blockedPage.locator('[data-v2-video][autoplay]').count(), 0);
+    await blockedPage.evaluate(() => { window.__allowVideoPlayback = true; });
+    await blockedPage.locator('body').dispatchEvent('pointerdown');
+    await blockedPage.waitForFunction(() => document.getElementById('video-abertura').currentTime > 0);
+    assert.equal(await blockedPage.locator('#video-abertura').evaluate(v => v.controls), false);
+    await blockedPage.close();
     fs.writeFileSync(path.join(output, 'results.json'), JSON.stringify(results, null, 2));
     console.log(JSON.stringify(results, null, 2));
   } finally { await browser.close(); }
