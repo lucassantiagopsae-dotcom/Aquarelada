@@ -51,7 +51,6 @@
 .livro-v2 .brincadeira:nth-child(3n+2) img { animation-name: deslizar-v2; animation-delay: -.8s; }
 .livro-v2 .brincadeira:nth-child(3n+3) img { animation-delay: -1.8s; }
 .livro-v2 .brincadeira figcaption { position: relative; z-index: 1; background: none; font-size: 17px; padding: 10px 2px 14px; }
-.livro-v2 .trilha:not(.v2-em-cena) .brincadeira img { animation-play-state: paused; }
 @keyframes brincar-v2 { 0%,100% { transform: rotate(-1deg) translateY(0); } 50% { transform: rotate(1deg) translateY(-5px); } }
 @keyframes deslizar-v2 { 0%,100% { transform: translateX(-4px); } 50% { transform: translateX(4px); } }
 /* ---------- elementos decorativos animados: pião girando, pipa voando ----------
@@ -133,6 +132,7 @@
   .abertura-v2__video { inset-block-start: 164px; height: 230px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .livro-v2 .brincadeira img { animation: none; }
-  .livro-v2 .deco-piao, .livro-v2 .deco-pipa { animation: none; }
+  .livro-v2 .brincadeira img { animation-duration: 5s !important; animation-iteration-count: infinite !important; }
+  .livro-v2 .deco-piao { animation-duration: 2.8s !important; animation-iteration-count: infinite !important; }
+  .livro-v2 .deco-pipa { animation-duration: 6s !important; animation-iteration-count: infinite !important; }
 }

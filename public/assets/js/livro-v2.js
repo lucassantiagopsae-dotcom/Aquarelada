@@ -1,10 +1,9 @@
 (function () {
   "use strict";
-  var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   if (window.lucide) window.lucide.createIcons();
   var states = [];
   document.querySelectorAll("[data-v2-video]").forEach(function (video) {
-    var state = { video: video, inView: false, needsGesture: false };
+    var state = { video: video, inView: false };
     states.push(state);
     video.muted = true;
     video.defaultMuted = true;
@@ -22,10 +21,7 @@
       load();
       if (!video.paused) return;
       var pending = video.play();
-      if (pending) pending.then(function () {
-        state.needsGesture = false;
-      }).catch(function () {
-        state.needsGesture = true;
+      if (pending) pending.catch(function () {
         video.controls = false;
         video.removeAttribute("controls");
       });
@@ -33,11 +29,10 @@
     state.sync = function () {
       video.controls = false;
       video.removeAttribute("controls");
-      if (reducedMotion.matches || !state.inView || document.hidden) video.pause();
+      if (!state.inView || document.hidden) video.pause();
       else play();
     };
     video.addEventListener("error", function () {
-      state.needsGesture = true;
       video.controls = false;
       video.removeAttribute("controls");
     });
@@ -53,18 +48,11 @@
   });
   function resumeVideosFromGesture() {
     states.forEach(function (state) {
-      if (state.inView && !document.hidden && !reducedMotion.matches) state.sync();
+      if (state.inView && !document.hidden) state.sync();
     });
   }
   document.addEventListener("pointerdown", resumeVideosFromGesture, { capture: true, passive: true });
   document.addEventListener("touchstart", resumeVideosFromGesture, { capture: true, passive: true });
   document.addEventListener("keydown", resumeVideosFromGesture, true);
   document.addEventListener("visibilitychange", function () { states.forEach(function (state) { state.sync(); }); });
-  var rail = document.querySelector(".trilha");
-  if ("IntersectionObserver" in window) {
-    new IntersectionObserver(function (entries) { rail.classList.toggle("v2-em-cena", entries[0].isIntersecting); }).observe(rail);
-  } else rail.classList.add("v2-em-cena");
-  reducedMotion.addEventListener("change", function () {
-    states.forEach(function (state) { state.sync(); });
-  });
 })();

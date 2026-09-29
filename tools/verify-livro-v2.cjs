@@ -92,10 +92,14 @@ fs.mkdirSync(output, { recursive: true });
       assert.equal(errors.length, 0, errors.join('\n'));
       await page.emulateMedia({ reducedMotion: 'reduce' });
       await page.reload({ waitUntil: 'networkidle' });
-      assert(await page.locator('#video-abertura').evaluate(v => v.paused));
+      await page.locator('#video-abertura').scrollIntoViewIfNeeded();
+      await page.waitForFunction(() => document.getElementById('video-abertura').currentTime > 0);
+      assert.equal(await page.locator('#video-abertura').evaluate(v => v.paused), false);
       assert.equal(await page.locator('#video-abertura').evaluate(v => v.controls), false);
-      await page.locator('#video-abertura').evaluate(v => v.play());
-      await page.waitForFunction(() => !document.getElementById('video-abertura').paused);
+      const reducedMovement1 = await page.locator('.brincadeira img').first().evaluate(e => getComputedStyle(e).transform);
+      await page.waitForTimeout(500);
+      const reducedMovement2 = await page.locator('.brincadeira img').first().evaluate(e => getComputedStyle(e).transform);
+      assert.notEqual(reducedMovement1, reducedMovement2);
       results.push({ viewport: name, width, height, duration, readingDuration, bottomSpace, measurements, videoAutoplay: 'pass', offscreenPause: 'pass', carousel: 'pass', cardMotion: 'pass', motionSamples: [movement1,movement2], reducedMotion: 'pass', errors });
       await page.close();
     }
