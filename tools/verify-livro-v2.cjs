@@ -41,7 +41,7 @@ fs.mkdirSync(output, { recursive: true });
       await page.locator('.leitura').scrollIntoViewIfNeeded();
       await page.waitForFunction(() => document.getElementById('video-leitura').currentTime > 0);
       const readingDuration = await page.locator('#video-leitura').evaluate(v => v.duration);
-      assert(readingDuration > 38 && readingDuration < 39);
+      assert(readingDuration > 23 && readingDuration < 24);
       await page.waitForTimeout(550);
       await page.screenshot({ path: path.join(output, `reading-${name}.png`) });
       await page.locator('.trilha__intro').evaluate(e => e.scrollIntoView({ block: 'start', behavior: 'instant' }));
