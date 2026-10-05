@@ -11,6 +11,8 @@
   "scripts": {
     "dev": "node serve-local.mjs",
     "build": "echo 'No build step needed'",
-    "start": "node serve-local.mjs"
+    "start": "node serve-local.mjs",
+    "validate": "node tools/validate-structure.mjs",
+    "check": "npm run build && npm run validate"
   }
 }

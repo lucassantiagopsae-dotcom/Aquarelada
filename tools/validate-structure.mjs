@@ -3,6 +3,7 @@ import path from "node:path";
 
 const skipParts = new Set([".git", ".agents", "source"]);
 const textExtensions = new Set([".html", ".js", ".css", ".webmanifest", ".json", ".xml", ".md"]);
+const outputDirectory = "public";
 
 function walk(directory, files = []) {
   for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
@@ -21,7 +22,7 @@ function unique(values) {
   return [...new Set(values)].sort();
 }
 
-const files = walk(".");
+const files = walk(outputDirectory);
 const textFiles = files.filter((file) => textExtensions.has(path.extname(file)));
 const missingAssets = [];
 const badTextFiles = [];
@@ -42,11 +43,11 @@ for (const file of textFiles) {
 for (const ref of unique(absoluteRefs)) {
   if (ref.startsWith("/api/")) continue;
   if (/^https?:\/\//.test(ref)) continue;
-  const localPath = path.join(".", ref);
+  const localPath = path.join(outputDirectory, ref.replace(/^\/+/, ""));
   if (!fs.existsSync(localPath)) missingAssets.push(ref);
 }
 
-const dataFile = "assets/js/generated-data.js";
+const dataFile = path.join(outputDirectory, "assets/js/generated-data.js");
 const pdfRefs = [];
 if (fs.existsSync(dataFile)) {
   const content = fs.readFileSync(dataFile, "utf8");
@@ -56,8 +57,8 @@ if (fs.existsSync(dataFile)) {
 }
 
 const pdfFiles = new Set(
-  fs.existsSync("assets/pdfs")
-    ? fs.readdirSync("assets/pdfs").filter((name) => name.endsWith(".pdf"))
+  fs.existsSync(path.join(outputDirectory, "assets/pdfs"))
+    ? fs.readdirSync(path.join(outputDirectory, "assets/pdfs")).filter((name) => name.endsWith(".pdf"))
     : []
 );
 const missingPdfs = unique(pdfRefs.filter((ref) => !pdfFiles.has(ref)));

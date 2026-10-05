@@ -2,29 +2,30 @@
 
 ## Rotas
 
-- `/` -> `index.html`
-- `/livro/` -> `livro/index.html`
-- `/livro-escolas/` -> `livro-escolas/index.html`
-- `/livro-nostalgia/` -> `livro-nostalgia/index.html`
-- `/supermanual/` -> `supermanual/index.html`
-- `/acesso/` -> `acesso/index.html`
-- `/brincadeiras/` -> `brincadeiras/index.html`
-- `/item/` -> `item/index.html`
-- `/cantigas/` -> `cantigas/index.html`
-- `/adivinhas/` -> `adivinhas/index.html`
-- `/desafios/` -> `desafios/index.html`
-- `/dobraduras/` -> `dobraduras/index.html`
-- `/e-se/` -> `e-se/index.html`
-- `/trava-linguas/` -> `trava-linguas/index.html`
+- `/` -> `public/index.html`
+- `/livro/` -> `public/livro/index.html`
+- `/livro-v2/` -> `public/livro-v2/index.html`
+- `/livro-escolas/` -> `public/livro-escolas/index.html`
+- `/livro-nostalgia/` -> `public/livro-nostalgia/index.html`
+- `/supermanual/` -> `public/supermanual/index.html`
+- `/acesso/` -> `public/acesso/index.html`
+- `/brincadeiras/` -> `public/brincadeiras/index.html`
+- `/item/` -> `public/item/index.html`
+- `/cantigas/` -> `public/cantigas/index.html`
+- `/adivinhas/` -> `public/adivinhas/index.html`
+- `/desafios/` -> `public/desafios/index.html`
+- `/dobraduras/` -> `public/dobraduras/index.html`
+- `/e-se/` -> `public/e-se/index.html`
+- `/trava-linguas/` -> `public/trava-linguas/index.html`
 
 ## Assets
 
-- `assets/css/` -> estilos do site
-- `assets/js/` -> scripts e dados gerados
-- `assets/images/` -> logos e imagens principais
-- `assets/icons/` -> ícones do app/PWA
-- `assets/plays/` -> ilustrações SVG das brincadeiras
-- `assets/pdfs/` -> PDFs para download
+- `public/assets/css/` -> estilos do site
+- `public/assets/js/` -> scripts e dados gerados
+- `public/assets/images/` -> logos e imagens principais
+- `public/assets/icons/` -> ícones do app/PWA
+- `public/assets/plays/` -> ilustrações SVG das brincadeiras
+- `public/assets/pdfs/` -> PDFs para download
 
 ## Arquivos de origem
 
